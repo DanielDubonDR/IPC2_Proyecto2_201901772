@@ -3,24 +3,24 @@ from .Cabecera import listaCabeceras
 
 class matriz:
     def __init__(self):
-        self.cFilas = listaCabeceras()
+        self.CFilas = listaCabeceras()
         self.CColumnas = listaCabeceras()
 
     def append(self, fila, columna, dato):
         nuevo = Nodo(fila, columna, dato)
 
-        eFila = self.cFilas.getCabecera(fila)
-        if eFila == None:
-            eFila = nCabecera(fila)
-            eFila.accesoNodo = nuevo
-            self.cFilas.appendCabecera(eFila)
+        CFila = self.CFilas.getCabecera(fila)
+        if CFila == None:
+            CFila = nCabecera(fila)
+            CFila.accesoNodo = nuevo
+            self.CFilas.appendCabecera(CFila)
         else:
-            if nuevo.columna <  eFila.accesoNodo.columna:
-                nuevo.derecha = eFila.accesoNodo
-                eFila.accesoNodo.izquierda = nuevo
-                eFila.accesoNodo = nuevo
+            if nuevo.columna <  CFila.accesoNodo.columna:
+                nuevo.derecha = CFila.accesoNodo
+                CFila.accesoNodo.izquierda = nuevo
+                CFila.accesoNodo = nuevo
             else:
-                actual = eFila.accesoNodo
+                actual = CFila.accesoNodo
                 while actual.derecha != None:
                     if nuevo.columna < actual.derecha.columna:
                         nuevo.derecha = actual.derecha
@@ -34,18 +34,18 @@ class matriz:
                     actual.derecha = nuevo
                     nuevo.izquierda = actual
 
-        eColumna = self.CColumnas.getCabecera(columna)
-        if eColumna == None:
-            eColumna = nCabecera(columna)
-            eColumna.accesoNodo = nuevo
-            self.CColumnas.appendCabecera(eColumna)
+        CColumna = self.CColumnas.getCabecera(columna)
+        if CColumna == None:
+            CColumna = nCabecera(columna)
+            CColumna.accesoNodo = nuevo
+            self.CColumnas.appendCabecera(CColumna)
         else:
-            if nuevo.fila <  eColumna.accesoNodo.fila:
-                nuevo.abajo = eColumna.accesoNodo
-                eColumna.accesoNodo.arriba = nuevo
-                eColumna.accesoNodo = nuevo
+            if nuevo.fila <  CColumna.accesoNodo.fila:
+                nuevo.abajo = CColumna.accesoNodo
+                CColumna.accesoNodo.arriba = nuevo
+                CColumna.accesoNodo = nuevo
             else:
-                actual = eColumna.accesoNodo
+                actual = CColumna.accesoNodo
                 while actual.abajo != None:
                     if nuevo.fila < actual.abajo.fila:
                         nuevo.abajo = actual.abajo
@@ -61,28 +61,28 @@ class matriz:
 
     def recorrerFilas(self):
         print("***********************RECORRIDO POR FILAS*************************")
-        eFila = self.cFilas.primero
-        while eFila != None:
-            actual = eFila.accesoNodo
+        CFila = self.CFilas.primero
+        while CFila != None:
+            actual = CFila.accesoNodo
             print("\nFila"+str(actual.fila))
             print("Columna   dato")
             while actual != None:
                 print(str(actual.columna)+"         "+actual.dato)
                 actual = actual.derecha
-            eFila = eFila.siguiente
+            CFila = CFila.siguiente
         print("*********************FIN RECORRIDO POR FILAS***********************\n")
 
     def recorrerColumnas(self):
         print("***********************RECORRIDO POR COLUMNAS*************************")
-        eColumna = self.CColumnas.primero
-        while eColumna != None:
-            actual = eColumna.accesoNodo
+        CColumna = self.CColumnas.primero
+        while CColumna != None:
+            actual = CColumna.accesoNodo
             print("\nColumna"+str(actual.columna))
             print("Fila   dato")
             while actual != None:
                 print(str(actual.fila)+"      "+actual.dato)
                 actual = actual.abajo
-            eColumna = eColumna.siguiente
+            CColumna = CColumna.siguiente
         print("*********************FIN RECORRIDO POR COLUMNAS***********************\n")
 
 
