@@ -1,0 +1,10 @@
+from Estructuras.MOrtogonal import matriz
+n = matriz()
+n.insertar(1, 0, "adolfo")
+n.insertar(1, 2, "eduardo")
+n.insertar(0, 1, "daniel")
+n.insertar(2, 1, "brandon")
+n.insertar(0, 2, "diego")
+n.insertar(0, 0, "javier")
+n.recorrerFilas()
+n.recorrerColumnas()
