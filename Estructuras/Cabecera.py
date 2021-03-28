@@ -1,10 +1,8 @@
-from .nodos import Nodo, nodoEncabezado
-
-class listaEncabezado:
+class listaCabeceras:
     def __init__(self, primero=None):
         self.primero=primero
 
-    def setEncabezado(self, nuevo):
+    def appendCabecera(self, nuevo):
         if self.primero==None:
             self.primero=nuevo
         elif nuevo.id < self.primero.id:
@@ -26,7 +24,7 @@ class listaEncabezado:
                 actual.siguiente = nuevo
                 nuevo.anterior = actual
 
-    def getEncabezado(self, id):
+    def getCabecera(self, id):
         actual = self.primero
         while actual != None:
             if actual.id == id:

@@ -1,19 +1,19 @@
-from .nodos import Nodo, nodoEncabezado
-from .encabezado import listaEncabezado
+from .Nodos import Nodo, nCabecera
+from .Cabecera import listaCabeceras
 
 class matriz:
     def __init__(self):
-        self.eFilas = listaEncabezado()
-        self.eColumnas = listaEncabezado()
+        self.cFilas = listaCabeceras()
+        self.CColumnas = listaCabeceras()
 
-    def insertar(self, fila, columna, valor):
-        nuevo = Nodo(fila, columna, valor)
+    def append(self, fila, columna, dato):
+        nuevo = Nodo(fila, columna, dato)
 
-        eFila = self.eFilas.getEncabezado(fila)
+        eFila = self.cFilas.getCabecera(fila)
         if eFila == None:
-            eFila = nodoEncabezado(fila)
+            eFila = nCabecera(fila)
             eFila.accesoNodo = nuevo
-            self.eFilas.setEncabezado(eFila)
+            self.cFilas.appendCabecera(eFila)
         else:
             if nuevo.columna <  eFila.accesoNodo.columna:
                 nuevo.derecha = eFila.accesoNodo
@@ -34,11 +34,11 @@ class matriz:
                     actual.derecha = nuevo
                     nuevo.izquierda = actual
 
-        eColumna = self.eColumnas.getEncabezado(columna)
+        eColumna = self.CColumnas.getCabecera(columna)
         if eColumna == None:
-            eColumna = nodoEncabezado(columna)
+            eColumna = nCabecera(columna)
             eColumna.accesoNodo = nuevo
-            self.eColumnas.setEncabezado(eColumna)
+            self.CColumnas.appendCabecera(eColumna)
         else:
             if nuevo.fila <  eColumna.accesoNodo.fila:
                 nuevo.abajo = eColumna.accesoNodo
@@ -61,26 +61,26 @@ class matriz:
 
     def recorrerFilas(self):
         print("***********************RECORRIDO POR FILAS*************************")
-        eFila = self.eFilas.primero
+        eFila = self.cFilas.primero
         while eFila != None:
             actual = eFila.accesoNodo
             print("\nFila"+str(actual.fila))
-            print("Columna   Valor")
+            print("Columna   dato")
             while actual != None:
-                print(str(actual.columna)+"         "+actual.valor)
+                print(str(actual.columna)+"         "+actual.dato)
                 actual = actual.derecha
             eFila = eFila.siguiente
         print("*********************FIN RECORRIDO POR FILAS***********************\n")
 
     def recorrerColumnas(self):
         print("***********************RECORRIDO POR COLUMNAS*************************")
-        eColumna = self.eColumnas.primero
+        eColumna = self.CColumnas.primero
         while eColumna != None:
             actual = eColumna.accesoNodo
             print("\nColumna"+str(actual.columna))
-            print("Fila   Valor")
+            print("Fila   dato")
             while actual != None:
-                print(str(actual.fila)+"      "+actual.valor)
+                print(str(actual.fila)+"      "+actual.dato)
                 actual = actual.abajo
             eColumna = eColumna.siguiente
         print("*********************FIN RECORRIDO POR COLUMNAS***********************\n")

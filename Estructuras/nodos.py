@@ -1,14 +1,14 @@
 class Nodo:
-    def __init__(self, fila, columna, valor):
+    def __init__(self, fila, columna, dato):
         self.fila = fila
         self.columna = columna
-        self.valor =  valor
+        self.dato =  dato
         self.derecha = None
+        self.abajo = None
         self.izquierda = None
         self.arriba = None
-        self.abajo = None
 
-class nodoEncabezado:
+class nCabecera:
     def __init__(self, id):
         self.id = id
         self.siguiente = None

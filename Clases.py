@@ -1,7 +1,7 @@
 class datos:
-    def __init__(self, id, nombre, fila, columna, matriz):
+    def __init__(self, id, nombre, nFila, nColumna, matriz):
         self.id=id
         self.nombre=nombre
-        self.fila=fila
-        self.columna=columna
+        self.nFila=nFila
+        self.nColumna=nColumna
         self.matriz=matriz
