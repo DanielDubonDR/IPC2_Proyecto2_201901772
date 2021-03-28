@@ -1,7 +1,8 @@
-from Estructuras.MOrtogonal import matriz
+from Estructuras.MOrtogonal import matrizOrtogonal
+from Funciones.LeerXML import ExtraerXML
 
 def prueba():
-    n = matriz()
+    n = matrizOrtogonal()
     n.append(1, 0, "adolfo")
     n.append(1, 2, "eduardo")
     n.append(0, 1, "daniel")
@@ -12,4 +13,5 @@ def prueba():
     n.recorrerColumnas()
 
 if __name__=="__main__":
-    prueba()
+    #prueba()
+    ExtraerXML("Archivos_Prueba/entrada.xml")

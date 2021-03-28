@@ -1,7 +1,7 @@
 from .Nodos import Nodo, nCabecera
 from .Cabecera import listaCabeceras
 
-class matriz:
+class matrizOrtogonal:
     def __init__(self):
         self.CFilas = listaCabeceras()
         self.CColumnas = listaCabeceras()
