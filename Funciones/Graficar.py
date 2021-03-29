@@ -3,8 +3,8 @@ from graphviz import Digraph
 def graficarM(m):
     string=""
     s = Digraph('structs', node_attr={'shape': 'plaintext'})
-    s.attr(rankdir="RL")
-    s.node("z","matriz")
+    #s.attr(rankdir="RL")
+    #s.node("z","matriz")
     string+='''<\n<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">'''
     filas=int(m.nFila)
     columnas=int(m.nColumna)
@@ -26,7 +26,7 @@ def graficarM(m):
             if encontrado==True:
                 string+="\n<TD bgcolor=\"black\">*</TD>"
             else:
-                string+="\n<TD></TD>"
+                string+="\n<TD>   </TD>"
         string+="</TR>"
     string+="</TABLE>>"
     s.node('struct3', string)
