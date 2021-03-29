@@ -5,7 +5,7 @@ def graficarM(m):
     s = Digraph('structs', node_attr={'shape': 'plaintext'})
     #s.attr(rankdir="RL")
     #s.node("z","matriz")
-    string+='''<\n<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">'''
+    string+='''<\n<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7">'''
     filas=int(m.nFila)
     columnas=int(m.nColumna)
     string+='''<TR>
