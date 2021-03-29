@@ -7,7 +7,6 @@ class ExtraerXML:
     def __init__(self,ruta):
         self.doc=minidom.parse(ruta)
         self.listaDatos=linked_list()
-        self.extraerDatos()
     
     def extraerDatos(self):
         matrices=self.doc.getElementsByTagName("matriz")
@@ -21,7 +20,7 @@ class ExtraerXML:
             imagenConvertidaMatriz=self.convertirImagen(imagen.firstChild.data)
             aux=datos(id,nombreMatriz.firstChild.data, filas.firstChild.data, columnas.firstChild.data,imagenConvertidaMatriz)
             self.listaDatos.append(aux)
-            print(aux)
+            #print(aux)
             id+=1
 
     
@@ -39,3 +38,6 @@ class ExtraerXML:
             fila+=1
         #matriz.recorrerFilas()
         return matriz
+
+    def getLista(self):
+        return self.listaDatos

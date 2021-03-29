@@ -1,5 +1,6 @@
 from Estructuras.MOrtogonal import matrizOrtogonal
 from Funciones.LeerXML import ExtraerXML
+from Funciones.Graficar import graficarM
 
 def prueba():
     n = matrizOrtogonal()
@@ -14,4 +15,12 @@ def prueba():
 
 if __name__=="__main__":
     #prueba()
-    ExtraerXML("Archivos_Prueba/entrada.xml")
+    extraer=ExtraerXML("Archivos_Prueba/entrada.xml")
+    extraer.extraerDatos()
+    lista=extraer.getLista()
+    graficarM(lista.search(1))
+    '''iterar=lista.search(1).matriz.iterarFilas()
+    for i in iterar:
+        print(i)
+        '''
+    

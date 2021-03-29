@@ -43,4 +43,4 @@ class linked_list:
 
         while current and current.dato.id != id:
             current = current.next
-        return current
+        return current.dato

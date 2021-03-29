@@ -1,5 +1,6 @@
 from .Nodos import Nodo, nCabecera
 from .Cabecera import listaCabeceras
+from Funciones.Clases import dtIterar
 
 class matrizOrtogonal:
     def __init__(self):
@@ -85,4 +86,14 @@ class matrizOrtogonal:
             CColumna = CColumna.siguiente
         print("*********************FIN RECORRIDO POR COLUMNAS***********************\n")
 
-
+    def iterarFilas(self):
+        CFila = self.CFilas.primero
+        while CFila != None:
+            actual = CFila.accesoNodo
+            f=actual.fila
+            while actual != None:
+                c=actual.columna
+                aux=dtIterar(f,c)
+                yield aux
+                actual = actual.derecha
+            CFila = CFila.siguiente
