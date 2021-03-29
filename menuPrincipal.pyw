@@ -1,0 +1,92 @@
+from tkinter import *
+from tkinter import messagebox
+from tkinter.filedialog import askopenfilename
+from PIL import Image, ImageTk
+from ventanaOperaciones import ventanaOperacion
+
+#--------------------------------------------VARIABLES GLOBALES-------------------------------------------------
+ruta=""
+
+
+
+
+
+
+
+
+
+#----------------------------------------------MENU PRINCIPAL-------------------------------------------------
+
+def cargarArchivo():
+    global ruta
+    ruta =  askopenfilename(initialdir = "/", title = "Select a File", filetypes = (("Text files", "*.xml*"), ("all files", "*.*")))
+
+def ventanaOp():
+    if ruta=="":
+        messagebox.showerror("Error","No se cargó ningún archivo")
+    else:
+        ventanaOperacion(ruta)
+
+
+menu=Tk()
+
+ancho_ventana = 830
+alto_ventana = 310
+x_ventana = menu.winfo_screenwidth() // 2 - ancho_ventana // 2
+y_ventana = menu.winfo_screenheight() // 2 - alto_ventana // 2
+posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
+
+menu.geometry(posicion)
+menu.resizable(0,0)
+menu.title("Menú Principal")
+menu.config(bg="white")
+
+lb1=Label(menu, text="Bienvenido", bg="white", font=("Forte",35))
+lb1.place(x=80, y=25, width=220, height=60)
+
+imgCargar=Image.open('Resources/cg.png')
+imgCargar=imgCargar.resize((100,100),Image.ANTIALIAS)
+imgCargar=ImageTk.PhotoImage(imgCargar)
+btnCargar=Button(menu, image=imgCargar, bg="white", command=cargarArchivo)
+btnCargar.place(x=80, y=120)
+
+imgOp=Image.open('Resources/ventas.png')
+imgOp=imgOp.resize((100,100),Image.ANTIALIAS)
+imgOp=ImageTk.PhotoImage(imgOp)
+btnOp=Button(menu, image=imgOp, bg="white", command=ventanaOp)
+btnOp.place(x=220, y=120)
+
+imgReporte=Image.open('Resources/reporte.png')
+imgReporte=imgReporte.resize((100,100),Image.ANTIALIAS)
+imgReporte=ImageTk.PhotoImage(imgReporte)
+btnReporte=Button(menu, image=imgReporte, bg="white")
+btnReporte.place(x=360, y=120)
+
+imgAyuda=Image.open('Resources/i.png')
+imgAyuda=imgAyuda.resize((100,100),Image.ANTIALIAS)
+imgAyuda=ImageTk.PhotoImage(imgAyuda)
+btnAyuda=Button(menu, image=imgAyuda, bg="white")
+btnAyuda.place(x=500, y=120)
+
+imgPanel=Image.open('Resources/lista.png')
+imgPanel=imgPanel.resize((100,100),Image.ANTIALIAS)
+imgPanel=ImageTk.PhotoImage(imgPanel)
+btnPanel=Button(menu, image=imgPanel, bg="white")
+btnPanel.place(x=640, y=120)
+
+lb2=Label(menu, text="Cargar Archivo", bg="white", font=("Consolas",9))
+lb2.place(x=80, y=230, width=100, height=30)
+
+lb3=Label(menu, text="Operaciones", bg="white", font=("Consolas",9))
+lb3.place(x=220, y=230, width=100, height=30)
+
+lb4=Label(menu, text="Reportes", bg="white", font=("Consolas",9))
+lb4.place(x=360, y=230, width=100, height=30)
+
+lb5=Label(menu, text="Ayuda", bg="white", font=("Consolas",9))
+lb5.place(x=500, y=230, width=100, height=30)
+
+lb6=Label(menu, text="Panel", bg="white", font=("Consolas",9))
+lb6.place(x=640, y=230, width=100, height=30)
+
+menu.mainloop()
