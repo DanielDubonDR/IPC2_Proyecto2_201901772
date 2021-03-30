@@ -6,6 +6,8 @@ from Funciones.LeerXML import ExtraerXML
 from Funciones.Graficar import graficarM
 
 lista=None
+combM=None
+imgCargar=None
 
 def datos(ruta):
     global lista
@@ -20,11 +22,25 @@ def nombresM():
         laux.append(i.dato.nombre)
     return laux
 
+def graficarMOriginal(event):
+    global combM
+    global imgCargar
+    matriz=combM.get()
+    if matriz!="Elegir Matriz":
+        graficarM(lista.searchNombre(str(matriz)))
+        imgCargar=Image.open("Imagenes/"+str(matriz)+".png")
+        imgCargar=imgCargar.resize((100,100))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+
+
 def ventanaOperacion(ruta):
+    global combM
+    global imgCargar
+
     datos(ruta)
     operaciones=Tk()
-    ancho_ventana = 900
-    alto_ventana = 600
+    ancho_ventana = 1200
+    alto_ventana = 645
     x_ventana = operaciones.winfo_screenwidth() // 2 - ancho_ventana // 2
     y_ventana = operaciones.winfo_screenheight() // 2 - alto_ventana // 2
     posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
@@ -42,7 +58,7 @@ def ventanaOperacion(ruta):
     tabControl.pack(expand=1, fill="both")
 
     barra1=Frame(tab1, bg="#273c75")
-    barra1.place(x=0, y=0, width=900, height=70)
+    barra1.place(x=0, y=0, width=1200, height=70)
 
     lb1=Label(barra1, bg="#273c75", fg="white",text="Matriz:", font=("Consolas",12))
     lb1.place(x=10, y=5, width=60, height=30)
@@ -51,6 +67,7 @@ def ventanaOperacion(ruta):
     combM["values"]=(nombresM())
     combM.place(x=10, y=35)
     combM.current(0)
+    combM.bind("<<ComboboxSelected>>", graficarMOriginal)
 
     lb2=Label(barra1, bg="#273c75", fg="white",text="Operaciones:", font=("Consolas",12))
     lb2.place(x=200, y=5, width=115, height=30)
@@ -60,8 +77,21 @@ def ventanaOperacion(ruta):
     combOp.place(x=200, y=35)
     combOp.current(0)
 
-    lbM1=Label(tab1)
-    lbM1.place(x=0, y=70, width=500, height=500)
+    imgCargar=Image.open('Imagenes/M2.png')
+    imgCargar=imgCargar.resize((520,520))
+    imgCargar=ImageTk.PhotoImage(imgCargar)
+    lbM1=Label(tab1, image=imgCargar)
+    lbM1.place(x=0, y=70, width=600, height=520)
+
+    lbM2=Label(tab1, bg="#dcdde1")
+    lbM2.place(x=600, y=70, width=600, height=520)
+
+    identificador1=Label(tab1, bg="#40739e", text="Matriz Original",  font=("Consolas",12), fg="white")
+    identificador1.place(x=0, y=590, width=600, height=30)
+    
+    identificador2=Label(tab1, bg="#487eb0", text="Matriz Modificada",  font=("Consolas",12), fg="white")
+    identificador2.place(x=600, y=590, width=600, height=30)
+
 
     operaciones.mainloop()
 

@@ -30,7 +30,7 @@ def graficarM(m):
         string+="</TR>"
     string+="</TABLE>>"
     s.node('struct3', string)
-    print(s.source)
+    #print(s.source)
 
     direccion="Imagenes/"+str(m.nombre)
-    s.render(direccion, view=True, format="png")
+    s.render(direccion, view=False, format="png")
