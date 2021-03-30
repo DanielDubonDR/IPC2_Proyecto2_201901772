@@ -44,3 +44,10 @@ class linked_list:
         while current and current.dato.id != id:
             current = current.next
         return current.dato
+
+    def searchNombre(self, nombre):
+        current = self.head
+
+        while current and current.dato.nombre != nombre:
+            current = current.next
+        return current.dato

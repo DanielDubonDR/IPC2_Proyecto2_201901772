@@ -9,7 +9,7 @@ def graficarM(m):
     filas=int(m.nFila)
     columnas=int(m.nColumna)
     string+='''<TR>
-    <TD border="0">M1</TD>'''
+    <TD border="0">'''+str(m.nombre)+'''</TD>'''
     for cc in range(columnas):
         string+="\n<TD border=\"0\">"+str(cc+1)+"</TD>"
        
@@ -32,4 +32,5 @@ def graficarM(m):
     s.node('struct3', string)
     print(s.source)
 
-    s.render('D://test-output/round-table.gv', view=True, format="png")
+    direccion="Imagenes/"+str(m.nombre)
+    s.render(direccion, view=True, format="png")
