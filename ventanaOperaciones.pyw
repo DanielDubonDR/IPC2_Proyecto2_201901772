@@ -7,7 +7,7 @@ from Funciones.Graficar import graficarM
 
 lista=None
 combM=None
-imgCargar=None
+lbM1=None
 
 def datos(ruta):
     global lista
@@ -24,18 +24,20 @@ def nombresM():
 
 def graficarMOriginal(event):
     global combM
-    global imgCargar
+    global lbM1
     matriz=combM.get()
     if matriz!="Elegir Matriz":
         graficarM(lista.searchNombre(str(matriz)))
         imgCargar=Image.open("Imagenes/"+str(matriz)+".png")
-        imgCargar=imgCargar.resize((100,100))
+        #imgCargar=imgCargar.resize((100,100))
         imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM1.configure(image=imgCargar)
+        lbM1.image=imgCargar
 
 
 def ventanaOperacion(ruta):
     global combM
-    global imgCargar
+    global lbM1
 
     datos(ruta)
     operaciones=Tk()
@@ -77,10 +79,7 @@ def ventanaOperacion(ruta):
     combOp.place(x=200, y=35)
     combOp.current(0)
 
-    imgCargar=Image.open('Imagenes/M2.png')
-    imgCargar=imgCargar.resize((520,520))
-    imgCargar=ImageTk.PhotoImage(imgCargar)
-    lbM1=Label(tab1, image=imgCargar)
+    lbM1=Label(tab1)
     lbM1.place(x=0, y=70, width=600, height=520)
 
     lbM2=Label(tab1, bg="#dcdde1")
