@@ -1,4 +1,5 @@
 from graphviz import Digraph
+from Funciones.Clases import dtIterar
 
 def graficarM(m):
     string=""

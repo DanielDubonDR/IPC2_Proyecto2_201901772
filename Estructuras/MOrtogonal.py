@@ -98,3 +98,26 @@ class matrizOrtogonal:
                 yield aux
                 actual = actual.derecha
             CFila = CFila.siguiente
+
+    def iterarFilasNodos(self):
+        CFila = self.CFilas.primero
+        while CFila != None:
+            actual = CFila.accesoNodo
+            while actual != None:
+                yield actual
+                actual = actual.derecha
+            CFila = CFila.siguiente
+
+    def verificarExiste(self, ff, cc):
+        encontrado=False
+        CFila = self.CFilas.primero
+        while CFila != None:
+            actual = CFila.accesoNodo
+            f=actual.fila
+            while actual != None:
+                c=actual.columna
+                if c==cc and f==ff: 
+                    encontrado=True
+                actual = actual.derecha
+            CFila = CFila.siguiente
+        return encontrado

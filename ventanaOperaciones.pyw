@@ -6,14 +6,21 @@ from Funciones.LeerXML import ExtraerXML
 from Funciones.Graficar import graficarM
 
 lista=None
+listaCopia=None
 combM=None
 lbM1=None
 
 def datos(ruta):
     global lista
+    global listaCopia
     extraer=ExtraerXML(ruta)
     extraer.extraerDatos()
     lista=extraer.getLista()
+    listaCopia=lista
+
+def change():
+    listaCopia.searchNombre("M1").matriz.append(1,1,"*")
+        
 
 def nombresM():
     laux=[]
