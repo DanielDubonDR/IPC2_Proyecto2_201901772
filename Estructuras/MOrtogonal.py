@@ -121,3 +121,27 @@ class matrizOrtogonal:
                 actual = actual.derecha
             CFila = CFila.siguiente
         return encontrado
+
+    def cambiarValor(self, ff, cc, valor):
+        CFila = self.CFilas.primero
+        while CFila != None:
+            actual = CFila.accesoNodo
+            f=actual.fila
+            while actual != None:
+                c=actual.columna
+                if c==cc and f==ff: 
+                    actual.dato=valor
+                actual = actual.derecha
+            CFila = CFila.siguiente
+    
+    def cambiarFila(self, ff, cc, valor):
+        CFila = self.CFilas.primero
+        while CFila != None:
+            actual = CFila.accesoNodo
+            f=actual.fila
+            while actual != None:
+                c=actual.columna
+                if c==cc and f==ff: 
+                    actual.fila=valor
+                actual = actual.derecha
+            CFila = CFila.siguiente
