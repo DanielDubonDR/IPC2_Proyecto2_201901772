@@ -29,10 +29,41 @@ def graficarMOriginal(event):
     if matriz!="Elegir Matriz":
         graficarM(lista.searchNombre(str(matriz)))
         imgCargar=Image.open("Imagenes/"+str(matriz)+".png")
-        #imgCargar=imgCargar.resize((100,100))
-        imgCargar=ImageTk.PhotoImage(imgCargar)
-        lbM1.configure(image=imgCargar)
-        lbM1.image=imgCargar
+        ancho=imgCargar.size[0]
+        alto=imgCargar.size[1]
+        print(ancho,alto)
+        if ancho<600 and alto<520:
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM1.configure(image=imgCargar)
+            lbM1.image=imgCargar
+        elif ancho>alto:
+            restar=ancho-600
+            print(ancho-restar,alto-restar)
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM1.configure(image=imgCargar)
+            lbM1.image=imgCargar
+        elif alto>ancho:
+            restar=alto-520
+            print(ancho-restar,alto-restar)
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM1.configure(image=imgCargar)
+            lbM1.image=imgCargar
+        elif alto==ancho and  ancho>alto:
+            restar=ancho-600
+            print(ancho-restar,alto-restar)
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM1.configure(image=imgCargar)
+            lbM1.image=imgCargar
+        elif alto==ancho and  alto>ancho:
+            restar=alto-520
+            print(ancho-restar,alto-restar)
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM1.configure(image=imgCargar)
+            lbM1.image=imgCargar
 
 
 def ventanaOperacion(ruta):
@@ -79,10 +110,10 @@ def ventanaOperacion(ruta):
     combOp.place(x=200, y=35)
     combOp.current(0)
 
-    lbM1=Label(tab1)
+    lbM1=Label(tab1, bg="white")
     lbM1.place(x=0, y=70, width=600, height=520)
 
-    lbM2=Label(tab1, bg="#dcdde1")
+    lbM2=Label(tab1, bg="#f5f6fa")
     lbM2.place(x=600, y=70, width=600, height=520)
 
     identificador1=Label(tab1, bg="#40739e", text="Matriz Original",  font=("Consolas",12), fg="white")
