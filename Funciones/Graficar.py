@@ -21,7 +21,7 @@ def graficarM(m):
         for j in range(1,columnas+1):
             encontrado=False
             for aux in m.matriz.iterarFilas():
-                if aux.f==i and aux.c==j:
+                if aux.f==i and aux.c==j and aux.dt=="*":
                     encontrado=True
             if encontrado==True:
                 string+="\n<TD bgcolor=\"black\">*</TD>"

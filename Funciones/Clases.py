@@ -11,9 +11,10 @@ class datos:
         return string
 
 class dtIterar:
-    def __init__(self, f, c):
+    def __init__(self, f, c, dt):
         self.f=f
         self.c=c
+        self.dt=dt
     def __str__(self):
-        string=str("Fila: ")+str(self.f)+str("\nColumna: ")+str(self.c)+str("\n")
+        string=str("Fila: ")+str(self.f)+str("\nColumna: ")+str(self.c)+str("\nDato: ")+str(self.dt)+str("\n")
         return string

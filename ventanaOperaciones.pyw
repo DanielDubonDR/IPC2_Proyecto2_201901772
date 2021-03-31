@@ -31,35 +31,30 @@ def graficarMOriginal(event):
         imgCargar=Image.open("Imagenes/"+str(matriz)+".png")
         ancho=imgCargar.size[0]
         alto=imgCargar.size[1]
-        print(ancho,alto)
         if ancho<600 and alto<520:
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM1.configure(image=imgCargar)
             lbM1.image=imgCargar
         elif ancho>alto:
             restar=ancho-600
-            print(ancho-restar,alto-restar)
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM1.configure(image=imgCargar)
             lbM1.image=imgCargar
         elif alto>ancho:
             restar=alto-520
-            print(ancho-restar,alto-restar)
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM1.configure(image=imgCargar)
             lbM1.image=imgCargar
         elif alto==ancho and  ancho>alto:
             restar=ancho-600
-            print(ancho-restar,alto-restar)
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM1.configure(image=imgCargar)
             lbM1.image=imgCargar
         elif alto==ancho and  alto>ancho:
             restar=alto-520
-            print(ancho-restar,alto-restar)
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM1.configure(image=imgCargar)

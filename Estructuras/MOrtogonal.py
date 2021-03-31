@@ -93,7 +93,8 @@ class matrizOrtogonal:
             f=actual.fila
             while actual != None:
                 c=actual.columna
-                aux=dtIterar(f,c)
+                dt=actual.dato
+                aux=dtIterar(f,c,dt)
                 yield aux
                 actual = actual.derecha
             CFila = CFila.siguiente
