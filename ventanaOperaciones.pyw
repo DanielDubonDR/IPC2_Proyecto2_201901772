@@ -132,12 +132,18 @@ def clearTxt3(event):
 def clearTxt4(event):
     txtF4.delete(0, END)
 
-def destruirComponentes():
+def destruirComponentesLimpiarZona():
     txtF1.destroy()
     txtF2.destroy()
     txtF3.destroy()
     txtF4.destroy()
     lbT.destroy()
+    action.destroy()
+    
+def destruirComponentesAddLnHV():
+    txtF1.destroy()
+    txtF2.destroy()
+    txtF3.destroy()
     action.destroy()
 
 def componentesLimpiarZona():
@@ -200,6 +206,32 @@ def componentesAddLnH():
     action=Button(barra1, text="Agregar", font=("Consolas",11), bg="#006266", fg="white", command=addLnH)
     action.place(x=1025, y=24, width=75, height=28)
 
+def componentesAddLnV():
+    global txtF1
+    global txtF2
+    global txtF3
+    global txtF4
+    global lbT
+    global action
+
+    txtF1=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF1.insert(0,"Fila")
+    txtF1.place(x=770, y=24, width=55, height=26)
+    txtF1.bind("<Button-1>", clearTxt1)
+
+    txtF2=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF2.insert(0,"Columna")
+    txtF2.place(x=835, y=24, width=55, height=26)
+    txtF2.bind("<Button-1>", clearTxt2)
+
+    txtF3=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF3.insert(0,"No. elementos")
+    txtF3.place(x=900, y=24, width=100, height=26)
+    txtF3.bind("<Button-1>", clearTxt3)
+
+    action=Button(barra1, text="Agregar", font=("Consolas",11), bg="#006266", fg="white", command=addLnV)
+    action.place(x=1025, y=24, width=75, height=28)
+
 def limpiarZona():
     f1=txtF1.get()
     c1=txtF2.get()
@@ -214,7 +246,7 @@ def limpiarZona():
     else:
         messagebox.showerror("Error","Formato incorrecto")
     combOp.current(0)
-    destruirComponentes()
+    destruirComponentesLimpiarZona()
 
 def addLnH():
     f1=txtF1.get()
@@ -230,10 +262,23 @@ def addLnH():
     else:
         messagebox.showerror("Error","Formato incorrecto")
     combOp.current(0)
-    txtF1.destroy()
-    txtF2.destroy()
-    txtF3.destroy()
-    action.destroy()
+    destruirComponentesAddLnHV()
+
+def addLnV():
+    f1=txtF1.get()
+    c1=txtF2.get()
+    c2=txtF3.get()
+    if f1.isnumeric() and c1.isnumeric() and c2.isnumeric():
+        for f in range(int(f1),int(f1)+int(c2)):
+            if lista.searchNombre(combM.get()).matriz.verificarExiste(f,int(c1)):
+                lista.searchNombre(combM.get()).matriz.cambiarValor(f,int(c1),"*")
+            else:
+                lista.searchNombre(combM.get()).matriz.append(f,int(c1),"*")
+        graficarEnM2(combM.get())
+    else:
+        messagebox.showerror("Error","Formato incorrecto")
+    combOp.current(0)
+    destruirComponentesAddLnHV()
 
 def graficarMOriginal1():
     global combM
@@ -296,6 +341,8 @@ def graficarMModificada(event):
             componentesLimpiarZona()
         elif operacion=="Agregar línea horizontal":
             componentesAddLnH()
+        elif operacion=="Agregar línea vertical":
+            componentesAddLnV()
     else:
         messagebox.showerror("Error","No ha seleccionado ninguna matriz")
         combOp.current(0)
@@ -379,7 +426,7 @@ def ventanaOperacion(ruta):
     lb2.place(x=200, y=5, width=115, height=30)
 
     combOp=Combobox(barra1, width="25", state="readonly", font=("Consolas",10), postcommand=graficarMOriginal1)
-    combOp["values"]=("Elegir Operación","Rotación horizontal","Rotación vertical","Transpuesta","Limpiar zona","Agregar línea horizontal","Agregar linea vertical","Agregar rectángulo","Agregar triangulo rectangulo")
+    combOp["values"]=("Elegir Operación","Rotación horizontal","Rotación vertical","Transpuesta","Limpiar zona","Agregar línea horizontal","Agregar línea vertical","Agregar rectángulo","Agregar triangulo rectangulo")
     combOp.place(x=200, y=35)
     combOp.current(0)
     combOp.bind("<<ComboboxSelected>>", graficarMModificada)

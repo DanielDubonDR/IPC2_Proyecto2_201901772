@@ -43,7 +43,7 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
@@ -55,7 +55,7 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD>   </TD>
@@ -79,7 +79,7 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
