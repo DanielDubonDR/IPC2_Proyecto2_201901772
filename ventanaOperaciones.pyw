@@ -174,6 +174,35 @@ def componentesLimpiarZona():
     action=Button(barra1, text="Limpiar", font=("Consolas",11), bg="#006266", fg="white", command=limpiarZona)
     action.place(x=1025, y=24, width=75, height=28)
 
+def componentesAddLnH():
+    global txtF1
+    global txtF2
+    global txtF3
+    global txtF4
+    global lbT
+    global action
+
+    txtF1=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF1.insert(0,"Fila")
+    txtF1.place(x=770, y=24, width=55, height=26)
+    txtF1.bind("<Button-1>", clearTxt1)
+
+    txtF2=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF2.insert(0,"Columna")
+    txtF2.place(x=832, y=24, width=55, height=26)
+    txtF2.bind("<Button-1>", clearTxt2)
+
+    lbT=Label(barra1, bg="#273c75", fg="white",text="hasta", font=("Consolas",11))
+    lbT.place(x=892, y=24, width=50, height=26)
+
+    txtF3=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF3.insert(0,"Columna")
+    txtF3.place(x=948, y=24, width=55, height=26)
+    txtF3.bind("<Button-1>", clearTxt3)
+
+    action=Button(barra1, text="Agregar", font=("Consolas",11), bg="#006266", fg="white", command=addLnH)
+    action.place(x=1025, y=24, width=75, height=28)
+
 def limpiarZona():
     f1=txtF1.get()
     c1=txtF2.get()
@@ -184,9 +213,23 @@ def limpiarZona():
             for j in range(int(c1),int(c2)+1):
                 if lista.searchNombre(combM.get()).matriz.verificarExiste(i,j):
                     lista.searchNombre(combM.get()).matriz.cambiarValor(i,j,"-")
+        graficarEnM2(combM.get())
     else:
         messagebox.showerror("Error","Formato incorrecto")
-    graficarEnM2(combM.get())
+    combOp.current(0)
+    destruirComponentes()
+
+def addLnH():
+    f1=txtF1.get()
+    c1=txtF2.get()
+    c2=txtF3.get()
+    if f1.isnumeric() and c1.isnumeric() and c2.isnumeric():
+        for j in range(int(c1),int(c2)+1):
+            if lista.searchNombre(combM.get()).matriz.verificarExiste(int(f1),j):
+                lista.searchNombre(combM.get()).matriz.cambiarValor(int(f1),j,"*")
+        graficarEnM2(combM.get())
+    else:
+        messagebox.showerror("Error","Formato incorrecto")
     combOp.current(0)
     destruirComponentes()
 
@@ -249,6 +292,8 @@ def graficarMModificada(event):
             graficarEnM2(matriz)
         elif operacion=="Limpiar zona":
             componentesLimpiarZona()
+        elif operacion=="Agregar línea horizontal":
+            componentesAddLnH()
     else:
         messagebox.showerror("Error","No ha seleccionado ninguna matriz")
         combOp.current(0)
