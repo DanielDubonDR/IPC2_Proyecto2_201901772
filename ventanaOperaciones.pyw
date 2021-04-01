@@ -12,6 +12,13 @@ combM=None
 combOp=None
 lbM1=None
 lbM2=None
+txtF1=None
+txtF2=None
+txtF3=None
+txtF4=None
+action=None
+lbT=None
+barra1=None
 rt=""
 
 def datos(ruta):
@@ -113,6 +120,76 @@ def graficarMOriginal(event):
     else:
         lbM1.configure(image="")
 
+def clearTxt1(event):
+    txtF1.delete(0, END)
+
+def clearTxt2(event):
+    txtF2.delete(0, END)
+
+def clearTxt3(event):
+    txtF3.delete(0, END)
+
+def clearTxt4(event):
+    txtF4.delete(0, END)
+
+def destruirComponentes():
+    txtF1.destroy()
+    txtF2.destroy()
+    txtF3.destroy()
+    txtF4.destroy()
+    lbT.destroy()
+    action.destroy()
+
+def componentesLimpiarZona():
+    global txtF1
+    global txtF2
+    global txtF3
+    global txtF4
+    global lbT
+    global action
+
+    txtF1=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF1.insert(0,"Fila")
+    txtF1.place(x=750, y=24, width=48, height=26)
+    txtF1.bind("<Button-1>", clearTxt1)
+
+    txtF2=Entry(barra1, font=("Consolas",8), justify=CENTER)
+    txtF2.insert(0,"Columna")
+    txtF2.place(x=802, y=24, width=48, height=26)
+    txtF2.bind("<Button-1>", clearTxt2)
+
+    lbT=Label(barra1, bg="#273c75", fg="white",text="hasta", font=("Consolas",11))
+    lbT.place(x=853, y=24, width=50, height=26)
+
+    txtF3=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF3.insert(0,"Fila")
+    txtF3.place(x=908, y=24, width=48, height=26)
+    txtF3.bind("<Button-1>", clearTxt3)
+
+    txtF4=Entry(barra1, font=("Consolas",8), justify=CENTER)
+    txtF4.insert(0,"Columna")
+    txtF4.place(x=961, y=24, width=48, height=26)
+    txtF4.bind("<Button-1>", clearTxt4)
+
+    action=Button(barra1, text="Limpiar", font=("Consolas",11), bg="#006266", fg="white", command=limpiarZona)
+    action.place(x=1025, y=24, width=75, height=28)
+
+def limpiarZona():
+    f1=txtF1.get()
+    c1=txtF2.get()
+    f2=txtF3.get()
+    c2=txtF4.get()
+    if f1.isnumeric() and f2.isnumeric() and c1.isnumeric() and c2.isnumeric():
+        for i in range(int(f1),int(f2)+1):
+            for j in range(int(c1),int(c2)+1):
+                if lista.searchNombre(combM.get()).matriz.verificarExiste(i,j):
+                    lista.searchNombre(combM.get()).matriz.cambiarValor(i,j,"-")
+    else:
+        messagebox.showerror("Error","Formato incorrecto")
+    graficarEnM2(combM.get())
+    combOp.current(0)
+    destruirComponentes()
+
 def graficarMOriginal1():
     global combM
     global lbM1
@@ -170,6 +247,8 @@ def graficarMModificada(event):
         elif operacion=="Transpuesta":
             changeTranspuesta(lista.searchNombre(str(matriz)))
             graficarEnM2(matriz)
+        elif operacion=="Limpiar zona":
+            componentesLimpiarZona()
     else:
         messagebox.showerror("Error","No ha seleccionado ninguna matriz")
         combOp.current(0)
@@ -215,6 +294,7 @@ def ventanaOperacion(ruta):
     global combOp
     global lbM2
     global rt
+    global barra1
     datos(ruta)
     rt=ruta
     operaciones=Tk()
@@ -270,7 +350,7 @@ def ventanaOperacion(ruta):
     identificador2.place(x=600, y=590, width=600, height=30)
 
     resetear=Button(tab1, text="Reset", font=("Consolas",11), bg="#006266", fg="white", command=reset)
-    resetear.place(x=1100, y=24, width=75, height=28)
+    resetear.place(x=1110, y=24, width=65, height=28)
 
     operaciones.mainloop()
 
