@@ -189,15 +189,12 @@ def componentesAddLnH():
 
     txtF2=Entry(barra1, font=("Consolas",10), justify=CENTER)
     txtF2.insert(0,"Columna")
-    txtF2.place(x=832, y=24, width=55, height=26)
+    txtF2.place(x=835, y=24, width=55, height=26)
     txtF2.bind("<Button-1>", clearTxt2)
 
-    lbT=Label(barra1, bg="#273c75", fg="white",text="hasta", font=("Consolas",11))
-    lbT.place(x=892, y=24, width=50, height=26)
-
     txtF3=Entry(barra1, font=("Consolas",10), justify=CENTER)
-    txtF3.insert(0,"Columna")
-    txtF3.place(x=948, y=24, width=55, height=26)
+    txtF3.insert(0,"No. elementos")
+    txtF3.place(x=900, y=24, width=100, height=26)
     txtF3.bind("<Button-1>", clearTxt3)
 
     action=Button(barra1, text="Agregar", font=("Consolas",11), bg="#006266", fg="white", command=addLnH)
@@ -224,7 +221,7 @@ def addLnH():
     c1=txtF2.get()
     c2=txtF3.get()
     if f1.isnumeric() and c1.isnumeric() and c2.isnumeric():
-        for j in range(int(c1),int(c2)+1):
+        for j in range(int(c1),int(c1)+int(c2)):
             if lista.searchNombre(combM.get()).matriz.verificarExiste(int(f1),j):
                 lista.searchNombre(combM.get()).matriz.cambiarValor(int(f1),j,"*")
             else:
@@ -236,7 +233,6 @@ def addLnH():
     txtF1.destroy()
     txtF2.destroy()
     txtF3.destroy()
-    lbT.destroy()
     action.destroy()
 
 def graficarMOriginal1():
@@ -382,7 +378,7 @@ def ventanaOperacion(ruta):
     lb2=Label(barra1, bg="#273c75", fg="white",text="Operaciones:", font=("Consolas",12))
     lb2.place(x=200, y=5, width=115, height=30)
 
-    combOp=Combobox(barra1, width="20", state="readonly", font=("Consolas",10), postcommand=graficarMOriginal1)
+    combOp=Combobox(barra1, width="25", state="readonly", font=("Consolas",10), postcommand=graficarMOriginal1)
     combOp["values"]=("Elegir Operación","Rotación horizontal","Rotación vertical","Transpuesta","Limpiar zona","Agregar línea horizontal","Agregar linea vertical","Agregar rectángulo","Agregar triangulo rectangulo")
     combOp.place(x=200, y=35)
     combOp.current(0)
