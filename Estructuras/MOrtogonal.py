@@ -61,7 +61,7 @@ class matrizOrtogonal:
                     nuevo.arriba = actual
 
     def recorrerFilas(self):
-        print("***********************RECORRIDO POR FILAS*************************")
+        print("-----------------------RECORRIDO POR FILAS-----------------------")
         CFila = self.CFilas.primero
         while CFila != None:
             actual = CFila.accesoNodo
@@ -71,10 +71,10 @@ class matrizOrtogonal:
                 print(str(actual.columna)+"         "+actual.dato)
                 actual = actual.derecha
             CFila = CFila.siguiente
-        print("*********************FIN RECORRIDO POR FILAS***********************\n")
+        print("---------------------FIN RECORRIDO POR FILAS-----------------------*\n")
 
     def recorrerColumnas(self):
-        print("***********************RECORRIDO POR COLUMNAS*************************")
+        print("---------------------RECORRIDO POR COLUMNAS-----------------------")
         CColumna = self.CColumnas.primero
         while CColumna != None:
             actual = CColumna.accesoNodo
@@ -84,7 +84,7 @@ class matrizOrtogonal:
                 print(str(actual.fila)+"      "+actual.dato)
                 actual = actual.abajo
             CColumna = CColumna.siguiente
-        print("*********************FIN RECORRIDO POR COLUMNAS***********************\n")
+        print("----------------------FIN RECORRIDO POR COLUMNAS----------------------\n")
 
     def iterarFilas(self):
         CFila = self.CFilas.primero

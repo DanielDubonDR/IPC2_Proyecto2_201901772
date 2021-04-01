@@ -227,11 +227,17 @@ def addLnH():
         for j in range(int(c1),int(c2)+1):
             if lista.searchNombre(combM.get()).matriz.verificarExiste(int(f1),j):
                 lista.searchNombre(combM.get()).matriz.cambiarValor(int(f1),j,"*")
+            else:
+                lista.searchNombre(combM.get()).matriz.append(int(f1),j,"*")
         graficarEnM2(combM.get())
     else:
         messagebox.showerror("Error","Formato incorrecto")
     combOp.current(0)
-    destruirComponentes()
+    txtF1.destroy()
+    txtF2.destroy()
+    txtF3.destroy()
+    lbT.destroy()
+    action.destroy()
 
 def graficarMOriginal1():
     global combM
