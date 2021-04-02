@@ -28,7 +28,7 @@ class linked_list:
             node = node.next
 
     def __len__(self):
-        return self.contador
+        return self.size
 
     def __str__(self):
         String = ""

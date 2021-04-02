@@ -5,6 +5,7 @@ from Estructuras.MOrtogonal import matrizOrtogonal
 from Funciones.LeerXML import ExtraerXML
 from Funciones.Graficar import graficarM
 from tkinter import messagebox
+from Estructuras.ListaSimple import linked_list
 
 lista=None
 listaCopia=None
@@ -19,7 +20,7 @@ txtF4=None
 action=None
 lbT=None
 barra1=None
-rt=""
+rt=None
 
 def datos(ruta):
     global lista
@@ -564,4 +565,7 @@ def ventanaOperacion(ruta):
 
     operaciones.mainloop()
 
-ventanaOperacion("Archivos_Prueba/entrada.xml")
+
+rutasss=linked_list()
+rutasss.append("Archivos_Prueba/entrada.xml")
+ventanaOperacion(rutasss)

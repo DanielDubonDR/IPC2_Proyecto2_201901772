@@ -3,9 +3,10 @@ from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
 from ventanaOperaciones import ventanaOperacion
+from Estructuras.ListaSimple import linked_list
 
 #--------------------------------------------VARIABLES GLOBALES-------------------------------------------------
-ruta=""
+listaRutas=linked_list()
 
 
 
@@ -18,14 +19,17 @@ ruta=""
 #----------------------------------------------MENU PRINCIPAL-------------------------------------------------
 
 def cargarArchivo():
-    global ruta
+    global listaRutas
+    ruta=""
     ruta =  askopenfilename(initialdir = "/", title = "Select a File", filetypes = (("Text files", "*.xml*"), ("all files", "*.*")))
+    if ruta!="":
+        listaRutas.append(ruta)
 
 def ventanaOp():
-    if ruta=="":
+    if len(listaRutas)==0:
         messagebox.showerror("Error","No se cargó ningún archivo")
     else:
-        ventanaOperacion(ruta)
+        ventanaOperacion(listaRutas)
 
 
 menu=Tk()
