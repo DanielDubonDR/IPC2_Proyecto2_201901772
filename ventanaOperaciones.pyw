@@ -139,6 +139,12 @@ def destruirComponentesLimpiarZona():
     txtF4.destroy()
     lbT.destroy()
     action.destroy()
+
+def destruirComponentesTRec():
+    txtF1.destroy()
+    txtF2.destroy()
+    txtF3.destroy()
+    action.destroy()
     
 def destruirComponentesAddLnHV():
     txtF1.destroy()
@@ -212,6 +218,30 @@ def componentesAddRec():
     txtF4.bind("<Button-1>", clearTxt4)
 
     action=Button(barra1, text="Insertar", font=("Consolas",11), bg="#006266", fg="white", command=addRec)
+    action.place(x=1025, y=24, width=75, height=28)
+    
+def componentesAddTRec():
+    global txtF1
+    global txtF2
+    global txtF3
+    global action
+
+    txtF1=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF1.insert(0,"Fila")
+    txtF1.place(x=800, y=24, width=54, height=26)
+    txtF1.bind("<Button-1>", clearTxt1)
+
+    txtF2=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF2.insert(0,"Columna")
+    txtF2.place(x=862, y=24, width=54, height=26)
+    txtF2.bind("<Button-1>", clearTxt2)
+
+    txtF3=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF3.insert(0,"Tamaño")
+    txtF3.place(x=930, y=24, width=54, height=26)
+    txtF3.bind("<Button-1>", clearTxt3)
+
+    action=Button(barra1, text="Insertar", font=("Consolas",11), bg="#006266", fg="white", command=addTRec)
     action.place(x=1025, y=24, width=75, height=28)
 
 def componentesAddLnH():
@@ -332,6 +362,23 @@ def addRec():
     combOp.current(0)
     destruirComponentesLimpiarZona()
 
+def addTRec():
+    f1=txtF1.get()
+    c1=txtF2.get()
+    alto=txtF3.get()
+    if f1.isnumeric() and c1.isnumeric() and alto.isnumeric():
+        for i in range(int(f1),int(f1)+int(alto)):
+            for j in range(int(c1),int(c1)+i-1):
+                if lista.searchNombre(combM.get()).matriz.verificarExiste(i,j):
+                    lista.searchNombre(combM.get()).matriz.cambiarValor(i,j,"*")
+                else:
+                    lista.searchNombre(combM.get()).matriz.append(i,j,"*")
+        graficarEnM2(combM.get())
+    else:
+        messagebox.showerror("Error","Formato incorrecto")
+    combOp.current(0)
+    destruirComponentesTRec()
+
 def graficarMOriginal1():
     global combM
     global lbM1
@@ -398,8 +445,8 @@ def graficarMModificada(event):
             componentesAddLnV()
         elif operacion=="Agregar rectángulo":
             componentesAddRec()
-        elif operacion=="Agregar triangulo rectángulo":
-            print("hola")
+        elif operacion=="Agregar triángulo rectángulo":
+            componentesAddTRec()
     else:
         messagebox.showerror("Error","No ha seleccionado ninguna matriz")
         combOp.current(0)
@@ -449,7 +496,7 @@ def clear():
     elif eleccion=="Agregar rectángulo":
         destruirComponentesLimpiarZona()
     elif eleccion=="Agregar triángulo rectángulo":
-        print()
+        destruirComponentesTRec()
 
 def ventanaOperacion(ruta):
     global combM
