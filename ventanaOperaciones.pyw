@@ -180,6 +180,40 @@ def componentesLimpiarZona():
     action=Button(barra1, text="Limpiar", font=("Consolas",11), bg="#006266", fg="white", command=limpiarZona)
     action.place(x=1025, y=24, width=75, height=28)
 
+def componentesAddRec():
+    global txtF1
+    global txtF2
+    global txtF3
+    global txtF4
+    global lbT
+    global action
+
+    txtF1=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF1.insert(0,"Fila")
+    txtF1.place(x=750, y=24, width=54, height=26)
+    txtF1.bind("<Button-1>", clearTxt1)
+
+    txtF2=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF2.insert(0,"Columna")
+    txtF2.place(x=812, y=24, width=54, height=26)
+    txtF2.bind("<Button-1>", clearTxt2)
+
+    lbT=Label(barra1, bg="#273c75", fg="white",text="Dimensiones", font=("Consolas",8))
+    lbT.place(x=905, y=6, width=80, height=22)
+
+    txtF3=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF3.insert(0,"Alto")
+    txtF3.place(x=890, y=24, width=54, height=26)
+    txtF3.bind("<Button-1>", clearTxt3)
+
+    txtF4=Entry(barra1, font=("Consolas",10), justify=CENTER)
+    txtF4.insert(0,"Ancho")
+    txtF4.place(x=951, y=24, width=54, height=26)
+    txtF4.bind("<Button-1>", clearTxt4)
+
+    action=Button(barra1, text="Insertar", font=("Consolas",11), bg="#006266", fg="white", command=addRec)
+    action.place(x=1025, y=24, width=75, height=28)
+
 def componentesAddLnH():
     global txtF1
     global txtF2
@@ -280,11 +314,30 @@ def addLnV():
     combOp.current(0)
     destruirComponentesAddLnHV()
 
+def addRec():
+    f1=txtF1.get()
+    c1=txtF2.get()
+    alto=txtF3.get()
+    ancho=txtF4.get()
+    if f1.isnumeric() and c1.isnumeric() and alto.isnumeric() and ancho.isnumeric():
+        for i in range(int(f1),int(f1)+int(alto)):
+            for j in range(int(c1),int(c1)+int(ancho)):
+                if lista.searchNombre(combM.get()).matriz.verificarExiste(i,j):
+                    lista.searchNombre(combM.get()).matriz.cambiarValor(i,j,"*")
+                else:
+                    lista.searchNombre(combM.get()).matriz.append(i,j,"*")
+        graficarEnM2(combM.get())
+    else:
+        messagebox.showerror("Error","Formato incorrecto")
+    combOp.current(0)
+    destruirComponentesLimpiarZona()
+
 def graficarMOriginal1():
     global combM
     global lbM1
     global lbM2
     lbM2.configure(image="")
+    clear()
     matriz=combM.get()
     if matriz!="Elegir Matriz":
         graficarM(lista.searchNombre(str(matriz)))
@@ -343,6 +396,10 @@ def graficarMModificada(event):
             componentesAddLnH()
         elif operacion=="Agregar línea vertical":
             componentesAddLnV()
+        elif operacion=="Agregar rectángulo":
+            componentesAddRec()
+        elif operacion=="Agregar triangulo rectángulo":
+            print("hola")
     else:
         messagebox.showerror("Error","No ha seleccionado ninguna matriz")
         combOp.current(0)
@@ -381,6 +438,18 @@ def graficarEnM2(matriz):
         lbM2.configure(image=imgCargar)
         lbM2.image=imgCargar
 
+def clear():
+    eleccion=combOp.get()
+    if eleccion=="Limpiar zona":
+        destruirComponentesLimpiarZona()
+    elif eleccion=="Agregar línea horizontal":
+        destruirComponentesAddLnHV()
+    elif eleccion=="Agregar línea vertical":
+        destruirComponentesAddLnHV()
+    elif eleccion=="Agregar rectángulo":
+        destruirComponentesLimpiarZona()
+    elif eleccion=="Agregar triángulo rectángulo":
+        print()
 
 def ventanaOperacion(ruta):
     global combM
@@ -426,7 +495,7 @@ def ventanaOperacion(ruta):
     lb2.place(x=200, y=5, width=115, height=30)
 
     combOp=Combobox(barra1, width="25", state="readonly", font=("Consolas",10), postcommand=graficarMOriginal1)
-    combOp["values"]=("Elegir Operación","Rotación horizontal","Rotación vertical","Transpuesta","Limpiar zona","Agregar línea horizontal","Agregar línea vertical","Agregar rectángulo","Agregar triangulo rectangulo")
+    combOp["values"]=("Elegir Operación","Rotación horizontal","Rotación vertical","Transpuesta","Limpiar zona","Agregar línea horizontal","Agregar línea vertical","Agregar rectángulo","Agregar triángulo rectángulo")
     combOp.place(x=200, y=35)
     combOp.current(0)
     combOp.bind("<<ComboboxSelected>>", graficarMModificada)
