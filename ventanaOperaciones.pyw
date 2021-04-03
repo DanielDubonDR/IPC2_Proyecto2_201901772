@@ -13,6 +13,9 @@ combM=None
 combOp=None
 lbM1=None
 lbM2=None
+lbM3=None
+lbM4=None
+lbM5=None
 txtF1=None
 txtF2=None
 txtF3=None
@@ -21,6 +24,8 @@ action=None
 lbT=None
 barra1=None
 rt=None
+combA=None
+combB=None
 
 def datos(ruta):
     global lista
@@ -504,11 +509,109 @@ def clear():
 
 #--------------------------------------------------------------------------FIN TAB1-------------------------------------------------------------- 
 
+
+#------------------------------------------------------------------------INICIO TAB2--------------------------------------------------------------
+def tipoGuardado():
+    laux=[]
+    laux.append("Elegir opción")
+    laux.append("Guardar como nueva imagen")
+    for i in lista.iterar():
+        laux.append(str("Sustituir en ")+str(i.dato.nombre))
+    return laux
+
+def graficarA(event):
+    global combA
+    global lbM3
+    matriz=combA.get()
+    if matriz!="Elegir Matriz":
+        graficarM(lista.searchNombre(str(matriz)))
+        #change(lista.searchNombre(str(matriz)))
+        imgCargar=Image.open("Imagenes/"+str(matriz)+".png")
+        ancho=imgCargar.size[0]
+        alto=imgCargar.size[1]
+        if ancho<400 and alto<520:
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM3.configure(image=imgCargar)
+            lbM3.image=imgCargar
+        elif ancho>alto:
+            restar=ancho-400
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM3.configure(image=imgCargar)
+            lbM3.image=imgCargar
+        elif alto>ancho:
+            restar=alto-520
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM3.configure(image=imgCargar)
+            lbM3.image=imgCargar
+        elif alto==ancho and  ancho>alto:
+            restar=ancho-400
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM3.configure(image=imgCargar)
+            lbM3.image=imgCargar
+        elif alto==ancho and  alto>ancho:
+            restar=alto-520
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM3.configure(image=imgCargar)
+            lbM3.image=imgCargar
+    else:
+        lbM3.configure(image="")
+
+def graficarB(event):
+    global combB
+    global lbM4
+    matriz=combB.get()
+    if matriz!="Elegir Matriz":
+        graficarM(lista.searchNombre(str(matriz)))
+        #change(lista.searchNombre(str(matriz)))
+        imgCargar=Image.open("Imagenes/"+str(matriz)+".png")
+        ancho=imgCargar.size[0]
+        alto=imgCargar.size[1]
+        if ancho<400 and alto<520:
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM4.configure(image=imgCargar)
+            lbM4.image=imgCargar
+        elif ancho>alto:
+            restar=ancho-400
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM4.configure(image=imgCargar)
+            lbM4.image=imgCargar
+        elif alto>ancho:
+            restar=alto-520
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM4.configure(image=imgCargar)
+            lbM4.image=imgCargar
+        elif alto==ancho and  ancho>alto:
+            restar=ancho-400
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM4.configure(image=imgCargar)
+            lbM4.image=imgCargar
+        elif alto==ancho and  alto>ancho:
+            restar=alto-520
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM4.configure(image=imgCargar)
+            lbM4.image=imgCargar
+    else:
+        lbM4.configure(image="")
+#--------------------------------------------------------------------------FIN TAB2-------------------------------------------------------------- 
+
 def ventanaOperacion(ruta):
     global combM
     global lbM1
     global combOp
+    global combA
+    global combB
     global lbM2
+    global lbM3
+    global lbM4
+    global lbM5
     global rt
     global barra1
     datos(ruta)
@@ -551,13 +654,13 @@ def ventanaOperacion(ruta):
     combA["values"]=(nombresM())
     combA.place(x=10, y=35)
     combA.current(0)
-    # combA.bind("<<ComboboxSelected>>", graficarMOriginal)
+    combA.bind("<<ComboboxSelected>>", graficarA)
 
     combB=Combobox(barra2, width="20", state="readonly", font=("Consolas",10))
     combB["values"]=(nombresM())
     combB.place(x=200, y=35)
     combB.current(0)
-    # combB.bind("<<ComboboxSelected>>", graficarMOriginal)
+    combB.bind("<<ComboboxSelected>>", graficarB)
 
     lb2=Label(barra1, bg="#273c75", fg="white",text="Operaciones:", font=("Consolas",12))
     lb2.place(x=200, y=5, width=115, height=30)
@@ -567,6 +670,30 @@ def ventanaOperacion(ruta):
     combOp.place(x=200, y=35)
     combOp.current(0)
     combOp.bind("<<ComboboxSelected>>", graficarMModificada)
+
+    combOp2=Combobox(barra2, width="25", state="readonly", font=("Consolas",10))
+    combOp2["values"]=("Elegir Operación","Unión A, B","Intersección A, B","Diferencia A, B","Diferencia simétrica A, B")
+    combOp2.place(x=390, y=35)
+    combOp2.current(0)
+    # combOp2.bind("<<ComboboxSelected>>", graficarMModificada)
+
+    combOpG=Combobox(barra2, width="25", state="readonly", font=("Consolas",10))
+    combOpG["values"]=tipoGuardado()
+    combOpG.place(x=610, y=35)
+    combOpG.current(0)
+    # combOpG.bind("<<ComboboxSelected>>", graficarMModificada)
+
+    lb3=Label(barra2, bg="#273c75", fg="white",text="Imagen A:", font=("Consolas",12))
+    lb3.place(x=10, y=5, width=80, height=30)
+
+    lb4=Label(barra2, bg="#273c75", fg="white",text="Imagen B:", font=("Consolas",12))
+    lb4.place(x=200, y=5, width=85, height=30)
+
+    lb5=Label(barra2, bg="#273c75", fg="white",text="Operaciones:", font=("Consolas",12))
+    lb5.place(x=390, y=5, width=115, height=30)
+
+    lb6=Label(barra2, bg="#273c75", fg="white",text="Guardar:", font=("Consolas",12))
+    lb6.place(x=610, y=5, width=75, height=30)
 
     lbM1=Label(tab1, bg="white")
     lbM1.place(x=0, y=70, width=600, height=520)
