@@ -122,6 +122,20 @@ class matrizOrtogonal:
             CFila = CFila.siguiente
         return encontrado
 
+    def verificarExiste2(self, ff, cc):
+        encontrado=False
+        CFila = self.CFilas.primero
+        while CFila != None:
+            actual = CFila.accesoNodo
+            f=actual.fila
+            while actual != None:
+                c=actual.columna
+                if c==cc and f==ff and actual.dato=="*": 
+                    encontrado=True
+                actual = actual.derecha
+            CFila = CFila.siguiente
+        return encontrado
+
     def cambiarValor(self, ff, cc, valor):
         CFila = self.CFilas.primero
         while CFila != None:

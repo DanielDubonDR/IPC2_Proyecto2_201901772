@@ -6,11 +6,13 @@ from Funciones.LeerXML import ExtraerXML
 from Funciones.Graficar import graficarM
 from tkinter import messagebox
 from Estructuras.ListaSimple import linked_list
+from Funciones.Clases import datos as dts
 
 lista=None
 listaCopia=None
 combM=None
 combOp=None
+combOp2=None
 lbM1=None
 lbM2=None
 lbM3=None
@@ -103,6 +105,12 @@ def graficarMOriginal(event):
             lbM1.configure(image=imgCargar)
             lbM1.image=imgCargar
         elif ancho>alto:
+            restar=ancho-600
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM1.configure(image=imgCargar)
+            lbM1.image=imgCargar
+        elif alto>ancho and alto<520:
             restar=ancho-600
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
             imgCargar=ImageTk.PhotoImage(imgCargar)
@@ -411,6 +419,12 @@ def graficarMOriginal1():
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM1.configure(image=imgCargar)
             lbM1.image=imgCargar
+        elif alto>ancho and alto<520:
+            restar=ancho-600
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM1.configure(image=imgCargar)
+            lbM1.image=imgCargar
         elif alto>ancho:
             restar=alto-520
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -470,6 +484,12 @@ def graficarEnM2(matriz):
         lbM2.configure(image=imgCargar)
         lbM2.image=imgCargar
     elif ancho>alto:
+        restar=ancho-600
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM2.configure(image=imgCargar)
+        lbM2.image=imgCargar
+    elif alto>ancho and alto<520:
         restar=ancho-600
         imgCargar=imgCargar.resize((ancho-restar,alto-restar))
         imgCargar=ImageTk.PhotoImage(imgCargar)
@@ -539,6 +559,12 @@ def graficarA(event):
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM3.configure(image=imgCargar)
             lbM3.image=imgCargar
+        elif alto>ancho and alto<520:
+            restar=ancho-400
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM3.configure(image=imgCargar)
+            lbM3.image=imgCargar
         elif alto>ancho:
             restar=alto-520
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -580,6 +606,12 @@ def graficarB(event):
             imgCargar=ImageTk.PhotoImage(imgCargar)
             lbM4.configure(image=imgCargar)
             lbM4.image=imgCargar
+        elif alto>ancho and alto<520:
+            restar=ancho-400
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM4.configure(image=imgCargar)
+            lbM4.image=imgCargar
         elif alto>ancho:
             restar=alto-520
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -600,6 +632,95 @@ def graficarB(event):
             lbM4.image=imgCargar
     else:
         lbM4.configure(image="")
+
+def graficarResultado(matriz):
+    global lbM5
+    graficarM(matriz)
+    imgCargar=Image.open("Imagenes/Resultado.png")
+    ancho=imgCargar.size[0]
+    alto=imgCargar.size[1]
+    if ancho<400 and alto<520:
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM5.configure(image=imgCargar)
+        lbM5.image=imgCargar
+    elif ancho>alto:
+        restar=ancho-400
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM5.configure(image=imgCargar)
+        lbM5.image=imgCargar
+    elif alto>ancho and alto<520:
+        restar=ancho-400
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM5.configure(image=imgCargar)
+        lbM5.image=imgCargar
+    elif alto>ancho:
+        restar=alto-520
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM5.configure(image=imgCargar)
+        lbM5.image=imgCargar
+    elif alto==ancho and  ancho>alto:
+        restar=ancho-400
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM5.configure(image=imgCargar)
+        lbM5.image=imgCargar
+    elif alto==ancho and  alto>ancho:
+        restar=alto-520
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM5.configure(image=imgCargar)
+        lbM5.image=imgCargar
+
+def resultado2img(event):
+    global lbM5
+    matrizA1=combA.get()
+    matrizB1=combB.get()
+    operacion=combOp2.get()
+    if matrizA1!="Elegir Matriz" and matrizB1!="Elegir Matriz":
+        if operacion=="Unión A, B":
+            unionAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)), matrizA1, matrizB1)
+        elif operacion=="Intersección A, B":
+            print()
+        elif operacion=="Diferencia A, B":
+            print()
+        elif operacion=="Diferencia simétrica A, B":
+            print()
+    else:
+        messagebox.showerror("Error","No han las matrices a operar")
+        combOp2.current(0)
+
+def unionAB(A,B, nA, nB):
+    nFilas=0
+    nColumnas=0
+    Maux=matrizOrtogonal()
+    if int(A.nFila)>int(B.nFila):
+        nFilas=int(A.nFila)
+    elif int(A.nFila)==int(B.nFila):
+        nFilas=int(A.nFila)
+    else:
+        nFilas=int(B.nFila)
+    
+    if int(A.nColumna)>int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    elif int(A.nColumna)==int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    else:
+        nColumnas=int(B.nColumna)
+
+    for i in range (1, nFilas+1):
+        for j in range (1, nColumnas+1):
+            if A.matriz.verificarExiste2(i,j) and B.matriz.verificarExiste2(i,j):
+                Maux.append(i,j,"*")
+            elif A.matriz.verificarExiste2(i,j):
+                Maux.append(i,j,"*")
+            elif B.matriz.verificarExiste2(i,j):
+                Maux.append(i,j,"*")
+    
+    aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    graficarResultado(aux)
 #--------------------------------------------------------------------------FIN TAB2-------------------------------------------------------------- 
 
 def ventanaOperacion(ruta):
@@ -614,6 +735,7 @@ def ventanaOperacion(ruta):
     global lbM5
     global rt
     global barra1
+    global combOp2
     datos(ruta)
     rt=ruta
     operaciones=Tk()
@@ -675,7 +797,7 @@ def ventanaOperacion(ruta):
     combOp2["values"]=("Elegir Operación","Unión A, B","Intersección A, B","Diferencia A, B","Diferencia simétrica A, B")
     combOp2.place(x=390, y=35)
     combOp2.current(0)
-    # combOp2.bind("<<ComboboxSelected>>", graficarMModificada)
+    combOp2.bind("<<ComboboxSelected>>", resultado2img)
 
     combOpG=Combobox(barra2, width="25", state="readonly", font=("Consolas",10))
     combOpG["values"]=tipoGuardado()
