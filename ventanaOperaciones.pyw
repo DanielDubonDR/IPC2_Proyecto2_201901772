@@ -54,7 +54,7 @@ def changeHorizontal(aux):
     filas=int(aux.nFila)
     for i in range(1,filas+1):
         for j in range(1,int(aux.nColumna)+1):
-            if aux.matriz.verificarExiste(i,j):
+            if aux.matriz.verificarExiste2(i,j):
                 nuevo=filas-(i-1)
                 matrizAux.append(nuevo,j,"*")
     aux.matriz=matrizAux
@@ -65,7 +65,7 @@ def changeVertical(aux):
     columnas=int(aux.nColumna)
     for i in range(1,filas+1):
         for j in range(1,columnas+1):
-            if aux.matriz.verificarExiste(i,j):
+            if aux.matriz.verificarExiste2(i,j):
                 nuevo=columnas-(j-1)
                 matrizAux.append(i,nuevo,"*")
     aux.matriz=matrizAux
@@ -76,7 +76,7 @@ def changeTranspuesta(aux):
     columnas=int(aux.nColumna)
     for i in range(1,filas+1):
         for j in range(1,columnas+1):
-            if aux.matriz.verificarExiste(i,j):
+            if aux.matriz.verificarExiste2(i,j):
                 matrizAux.append(j,i,"*")
     aux.matriz=matrizAux
 
