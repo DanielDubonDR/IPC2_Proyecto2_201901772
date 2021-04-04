@@ -542,6 +542,8 @@ def tipoGuardado():
 def graficarA(event):
     global combA
     global lbM3
+    combOp2.current(0)
+    lbM5.configure(image="")
     matriz=combA.get()
     if matriz!="Elegir Matriz":
         graficarM(lista.searchNombre(str(matriz)))
@@ -589,6 +591,8 @@ def graficarA(event):
 def graficarB(event):
     global combB
     global lbM4
+    combOp2.current(0)
+    lbM5.configure(image="")
     matriz=combB.get()
     if matriz!="Elegir Matriz":
         graficarM(lista.searchNombre(str(matriz)))
@@ -687,7 +691,7 @@ def resultado2img(event):
         elif operacion=="Diferencia A, B":
             diferenciaAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)))
         elif operacion=="Diferencia simétrica A, B":
-            print()
+            diferenciaSimetricaAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)))
     else:
         messagebox.showerror("Error","No han las matrices a operar")
         combOp2.current(0)
@@ -773,6 +777,35 @@ def diferenciaAB(A,B):
         if Maux.verificarExiste2(copia.fila, copia.columna):
             Maux.cambiarValor(copia.fila, copia.columna, "-")
     
+    aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    graficarResultado(aux)
+
+def diferenciaSimetricaAB(A,B):
+    nFilas=0
+    nColumnas=0
+    Maux=matrizOrtogonal()
+    if int(A.nFila)>int(B.nFila):
+        nFilas=int(A.nFila)
+    elif int(A.nFila)==int(B.nFila):
+        nFilas=int(A.nFila)
+    else:
+        nFilas=int(B.nFila)
+    
+    if int(A.nColumna)>int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    elif int(A.nColumna)==int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    else:
+        nColumnas=int(B.nColumna)
+
+    for copia in A.matriz.iterarFilasNodos():
+        Maux.append(copia.fila, copia.columna, copia.dato)
+
+    for copia in B.matriz.iterarFilasNodos():
+        if Maux.verificarExiste2(copia.fila, copia.columna):
+            Maux.cambiarValor(copia.fila, copia.columna, "-")
+        else:
+            Maux.append(copia.fila, copia.columna, "*")
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
     graficarResultado(aux)
 #--------------------------------------------------------------------------FIN TAB2-------------------------------------------------------------- 
