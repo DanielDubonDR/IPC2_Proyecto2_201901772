@@ -681,9 +681,9 @@ def resultado2img(event):
     operacion=combOp2.get()
     if matrizA1!="Elegir Matriz" and matrizB1!="Elegir Matriz":
         if operacion=="Unión A, B":
-            unionAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)), matrizA1, matrizB1)
+            unionAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)))
         elif operacion=="Intersección A, B":
-            print()
+            interseccionAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)))
         elif operacion=="Diferencia A, B":
             print()
         elif operacion=="Diferencia simétrica A, B":
@@ -692,7 +692,7 @@ def resultado2img(event):
         messagebox.showerror("Error","No han las matrices a operar")
         combOp2.current(0)
 
-def unionAB(A,B, nA, nB):
+def unionAB(A,B):
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -717,6 +717,32 @@ def unionAB(A,B, nA, nB):
             elif A.matriz.verificarExiste2(i,j):
                 Maux.append(i,j,"*")
             elif B.matriz.verificarExiste2(i,j):
+                Maux.append(i,j,"*")
+    
+    aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    graficarResultado(aux)
+
+def interseccionAB(A,B):
+    nFilas=0
+    nColumnas=0
+    Maux=matrizOrtogonal()
+    if int(A.nFila)>int(B.nFila):
+        nFilas=int(A.nFila)
+    elif int(A.nFila)==int(B.nFila):
+        nFilas=int(A.nFila)
+    else:
+        nFilas=int(B.nFila)
+    
+    if int(A.nColumna)>int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    elif int(A.nColumna)==int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    else:
+        nColumnas=int(B.nColumna)
+
+    for i in range (1, nFilas+1):
+        for j in range (1, nColumnas+1):
+            if A.matriz.verificarExiste2(i,j) and B.matriz.verificarExiste2(i,j):
                 Maux.append(i,j,"*")
     
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
@@ -829,7 +855,7 @@ def ventanaOperacion(ruta):
     lbM4=Label(tab2, bg="#f5f6fa")
     lbM4.place(x=400, y=70, width=400, height=520)
 
-    lbM5=Label(tab2, bg="#bdc3c7")
+    lbM5=Label(tab2, bg="#f1f2f6")
     lbM5.place(x=800, y=70, width=400, height=520)
 
     identificador1=Label(tab1, bg="#40739e", text="Imagen Original",  font=("Consolas",12), fg="white")
