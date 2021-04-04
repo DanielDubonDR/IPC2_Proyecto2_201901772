@@ -22,12 +22,17 @@ txtF1=None
 txtF2=None
 txtF3=None
 txtF4=None
+txtF5=None
 action=None
 lbT=None
 barra1=None
 rt=None
 combA=None
 combB=None
+combOpG=None
+preview=None
+barra2=None
+btn2=None
 
 def datos(ruta):
     global lista
@@ -148,6 +153,9 @@ def clearTxt3(event):
 
 def clearTxt4(event):
     txtF4.delete(0, END)
+
+def clearTxt5(event):
+    txtF5.delete(0, END)
 
 def destruirComponentesLimpiarZona():
     txtF1.destroy()
@@ -533,7 +541,7 @@ def clear():
 #------------------------------------------------------------------------INICIO TAB2--------------------------------------------------------------
 def tipoGuardado():
     laux=[]
-    laux.append("Elegir opción")
+    laux.append("Elegir Opción")
     laux.append("Guardar como nueva imagen")
     for i in lista.iterar():
         laux.append(str("Sustituir en ")+str(i.dato.nombre))
@@ -697,6 +705,7 @@ def resultado2img(event):
         combOp2.current(0)
 
 def unionAB(A,B):
+    global preview
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -724,9 +733,11 @@ def unionAB(A,B):
                 Maux.append(i,j,"*")
     
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    preview=aux
     graficarResultado(aux)
 
 def interseccionAB(A,B):
+    global preview
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -750,9 +761,11 @@ def interseccionAB(A,B):
                 Maux.append(i,j,"*")
     
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    preview=aux
     graficarResultado(aux)
 
 def diferenciaAB(A,B):
+    global preview
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -778,9 +791,11 @@ def diferenciaAB(A,B):
             Maux.cambiarValor(copia.fila, copia.columna, "-")
     
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    preview=aux
     graficarResultado(aux)
 
 def diferenciaSimetricaAB(A,B):
+    global preview
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -807,7 +822,57 @@ def diferenciaSimetricaAB(A,B):
         else:
             Maux.append(copia.fila, copia.columna, "*")
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    preview=aux
     graficarResultado(aux)
+
+def opcionesGuardado(event):
+    global combOpG
+    global txtF5
+    global btn2
+    opcion=combOpG.get()
+    o=combOp2.get()
+    if opcion!="Elegir Opción" and o!="Elegir Operación":
+        if opcion=="Guardar como nueva imagen":
+
+            txtF5=Entry(barra2, font=("Consolas",9), justify=CENTER)
+            txtF5.insert(0,"Ingresar nombre")
+            txtF5.place(x=941, y=24, width=110, height=26)
+            txtF5.bind("<Button-1>", clearTxt5)
+
+            btn2=Button(barra2, text="Guardar", font=("Consolas",11), bg="#006266", fg="white", command=guardar)
+            btn2.place(x=1061, y=24, width=75, height=28)
+
+        if "Sustituir" in opcion:
+            aux=opcion.replace("Sustituir en ","")
+            id=lista.searchNombre(aux).id
+            aux2=dts(id,aux,preview.nFila,preview.nColumna,preview.matriz)
+            lista.modificar(aux,aux2)
+            messagebox.showinfo("Proceso exitoso","Se ha sobreescrito la matriz")
+            combOpG.current(0)
+    else:
+        messagebox.showerror("Error","No se ha elegido una operación")
+    
+def guardar():
+    global combA
+    global combB
+    encontrado=False
+    for buscar in lista.iterar():
+        if buscar.dato.nombre==txtF5.get():
+            encontrado=True
+            
+    if encontrado:
+        messagebox.showerror("Error","Ya existe una imagen con el mismo nombre")
+    else:
+        aux2=dts(0,txtF5.get(),preview.nFila,preview.nColumna,preview.matriz)
+        lista.append(aux2)
+        messagebox.showinfo("Proceso exitoso","Imagen guardada")
+        combA["values"]=(nombresM())
+        combB["values"]=(nombresM())
+        combM["values"]=(nombresM())
+        txtF5.destroy()
+        btn2.destroy()
+        combOpG.current(0)
+
 #--------------------------------------------------------------------------FIN TAB2-------------------------------------------------------------- 
 
 def ventanaOperacion(ruta):
@@ -822,7 +887,9 @@ def ventanaOperacion(ruta):
     global lbM5
     global rt
     global barra1
+    global barra2
     global combOp2
+    global combOpG
     datos(ruta)
     rt=ruta
     operaciones=Tk()
@@ -890,7 +957,7 @@ def ventanaOperacion(ruta):
     combOpG["values"]=tipoGuardado()
     combOpG.place(x=610, y=35)
     combOpG.current(0)
-    # combOpG.bind("<<ComboboxSelected>>", graficarMModificada)
+    combOpG.bind("<<ComboboxSelected>>", opcionesGuardado)
 
     lb3=Label(barra2, bg="#273c75", fg="white",text="Imagen A:", font=("Consolas",12))
     lb3.place(x=10, y=5, width=80, height=30)

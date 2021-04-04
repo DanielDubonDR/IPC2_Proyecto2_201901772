@@ -2,7 +2,7 @@ digraph structs {
 	node [shape=plaintext]
 	struct3 [label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR>
-    <TD border="0">Resultado</TD>
+    <TD border="0">C</TD>
 <TD border="0">1</TD>
 <TD border="0">2</TD>
 <TD border="0">3</TD>
@@ -15,16 +15,6 @@ digraph structs {
 <TR>
         <TD border="0">1</TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD></TR>
-<TR>
-        <TD border="0">2</TD>
-<TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
@@ -33,11 +23,21 @@ digraph structs {
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD></TR>
 <TR>
+        <TD border="0">2</TD>
+<TD>   </TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD bgcolor="black">*</TD></TR>
+<TR>
         <TD border="0">3</TD>
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
@@ -45,11 +45,11 @@ digraph structs {
 <TR>
         <TD border="0">4</TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
-<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD></TR>
 <TR>
@@ -65,11 +65,11 @@ digraph structs {
 <TR>
         <TD border="0">6</TD>
 <TD>   </TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD></TR>
 <TR>
@@ -77,7 +77,7 @@ digraph structs {
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
-<TD bgcolor="black">*</TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
@@ -87,19 +87,19 @@ digraph structs {
 <TD>   </TD>
 <TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
 <TD bgcolor="black">*</TD></TR>
 <TR>
         <TD border="0">9</TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
-<TD bgcolor="black">*</TD>
-<TD bgcolor="black">*</TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
-<TD bgcolor="black">*</TD>
-<TD bgcolor="black">*</TD></TR></TABLE>>]
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD></TR></TABLE>>]
 }

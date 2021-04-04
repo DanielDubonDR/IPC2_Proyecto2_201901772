@@ -51,3 +51,10 @@ class linked_list:
         while current and current.dato.nombre != nombre:
             current = current.next
         return current.dato
+
+    def modificar(self, nombre, dt):
+        current = self.head
+
+        while current and current.dato.nombre != nombre:
+            current = current.next
+        current.dato=dt
