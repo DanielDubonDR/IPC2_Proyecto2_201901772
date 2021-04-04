@@ -685,7 +685,7 @@ def resultado2img(event):
         elif operacion=="Intersección A, B":
             interseccionAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)))
         elif operacion=="Diferencia A, B":
-            print()
+            diferenciaAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)))
         elif operacion=="Diferencia simétrica A, B":
             print()
     else:
@@ -744,6 +744,34 @@ def interseccionAB(A,B):
         for j in range (1, nColumnas+1):
             if A.matriz.verificarExiste2(i,j) and B.matriz.verificarExiste2(i,j):
                 Maux.append(i,j,"*")
+    
+    aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
+    graficarResultado(aux)
+
+def diferenciaAB(A,B):
+    nFilas=0
+    nColumnas=0
+    Maux=matrizOrtogonal()
+    if int(A.nFila)>int(B.nFila):
+        nFilas=int(A.nFila)
+    elif int(A.nFila)==int(B.nFila):
+        nFilas=int(A.nFila)
+    else:
+        nFilas=int(B.nFila)
+    
+    if int(A.nColumna)>int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    elif int(A.nColumna)==int(B.nColumna):
+        nColumnas=int(A.nColumna)
+    else:
+        nColumnas=int(B.nColumna)
+
+    for copia in A.matriz.iterarFilasNodos():
+        Maux.append(copia.fila, copia.columna, copia.dato)
+
+    for copia in B.matriz.iterarFilasNodos():
+        if Maux.verificarExiste2(copia.fila, copia.columna):
+            Maux.cambiarValor(copia.fila, copia.columna, "-")
     
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
     graficarResultado(aux)
