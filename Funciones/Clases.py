@@ -18,3 +18,14 @@ class dtIterar:
     def __str__(self):
         string=str("Fila: ")+str(self.f)+str("\nColumna: ")+str(self.c)+str("\nDato: ")+str(self.dt)+str("\n")
         return string
+
+class dtPanel:
+    def __init__(self, id, m1, m2, operacion):
+        self.id=id
+        self.m1=m1
+        self.m2=m2
+        self.operacion=operacion
+
+    def __str__(self):
+        string=str(self.id)+str(" ")+str(self.m1)+str(" ")+str(self.m2)+str(" ")+str(self.operacion)
+        return string

@@ -1006,7 +1006,8 @@ def ventanaOperacion(ruta):
 
     operaciones.mainloop()
 
-
+'''
 rutasss=linked_list()
 rutasss.append("Archivos_Prueba/entrada.xml")
 ventanaOperacion(rutasss)
+'''

@@ -27,9 +27,13 @@ def cargarArchivo():
         listaRutas.append(ruta)
 
 def ventanaOp():
-    if len(listaRutas)==0:
+    cont=0
+    for i in listaRutas.iterar():
+        cont+=1
+    if cont==0:
         messagebox.showerror("Error","No se cargó ningún archivo")
     else:
+        menu.destroy()
         ventanaOperacion(listaRutas)
 
 

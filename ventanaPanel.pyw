@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 
-def m1():
+def m1(dato):
     operaciones=Tk()
     ancho_ventana = 1200
     alto_ventana = 620
@@ -36,6 +36,8 @@ def m1():
     
     identificador2=Label(operaciones, bg="#487eb0", text="Imagen Resultante",  font=("Consolas",12), fg="white")
     identificador2.place(x=600, y=590, width=600, height=30)
+
+    print(dato)
 
     operaciones.mainloop()
 
@@ -80,5 +82,3 @@ def m2():
     identificador5.place(x=800, y=590, width=400, height=30)
 
     operaciones.mainloop()
-
-m2()
