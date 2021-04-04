@@ -4,6 +4,7 @@ from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
 from ventanaOperaciones import ventanaOperacion
 from Estructuras.ListaSimple import linked_list
+from ventanaAyuda import ventanaHelp
 
 #--------------------------------------------VARIABLES GLOBALES-------------------------------------------------
 listaRutas=linked_list()
@@ -69,7 +70,7 @@ btnReporte.place(x=360, y=120)
 imgAyuda=Image.open('Resources/i.png')
 imgAyuda=imgAyuda.resize((100,100),Image.ANTIALIAS)
 imgAyuda=ImageTk.PhotoImage(imgAyuda)
-btnAyuda=Button(menu, image=imgAyuda, bg="white")
+btnAyuda=Button(menu, image=imgAyuda, bg="white", command=ventanaHelp)
 btnAyuda.place(x=500, y=120)
 
 imgPanel=Image.open('Resources/lista.png')
