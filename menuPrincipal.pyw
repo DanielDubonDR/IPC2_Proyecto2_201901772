@@ -49,6 +49,10 @@ def setPanels(aux):
     global Panels
     Panels=aux
 
+def setRutas(rt):
+    global listaRutas
+    listaRutas=rt
+
 def principal():
     global menu
     menu=Tk()

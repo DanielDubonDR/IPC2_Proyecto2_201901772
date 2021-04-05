@@ -897,7 +897,8 @@ def guardar():
 
 def on_clossing():
     operaciones.destroy()
-    from menuPrincipal import principal, setPanels
+    from menuPrincipal import principal, setPanels, setRutas
+    setRutas(rt)
     setPanels(xdPanel)
     principal()
 
