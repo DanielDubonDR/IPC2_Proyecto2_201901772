@@ -44,6 +44,9 @@ def ventanaPanel():
     elif Panels.id==1:
         menu.destroy()
         m1(Panels)
+    elif Panels.id==2:
+        menu.destroy()
+        m2(Panels)
 
 def setPanels(aux):
     global Panels

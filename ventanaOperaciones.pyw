@@ -726,6 +726,7 @@ def resultado2img(event):
 
 def unionAB(A,B):
     global preview
+    global xdPanel
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -755,9 +756,11 @@ def unionAB(A,B):
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
     preview=aux
     graficarResultado(aux)
+    xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
 
 def interseccionAB(A,B):
     global preview
+    global xdPanel
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -783,9 +786,11 @@ def interseccionAB(A,B):
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
     preview=aux
     graficarResultado(aux)
+    xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
 
 def diferenciaAB(A,B):
     global preview
+    global xdPanel
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -813,9 +818,11 @@ def diferenciaAB(A,B):
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
     preview=aux
     graficarResultado(aux)
+    xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
 
 def diferenciaSimetricaAB(A,B):
     global preview
+    global xdPanel
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -844,6 +851,7 @@ def diferenciaSimetricaAB(A,B):
     aux=dts(0,"Resultado",nFilas,nColumnas,Maux)
     preview=aux
     graficarResultado(aux)
+    xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
 
 def opcionesGuardado(event):
     global combOpG
