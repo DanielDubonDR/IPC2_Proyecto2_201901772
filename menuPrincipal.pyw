@@ -5,13 +5,19 @@ from PIL import Image, ImageTk
 from ventanaOperaciones import ventanaOperacion
 from Estructuras.ListaSimple import linked_list
 from ventanaAyuda import ventanaHelp
-from Funciones.Clases import dtPanel
+from Funciones.Clases import dtPanel, reporte
 from ventanaPanel import m1, m2
+from Funciones.LeerXML import ExtraerXML
+import datetime as datetime
+from Funciones.ReportarLogs import reporte1, reporte2
 #--------------------------------------------VARIABLES GLOBALES-------------------------------------------------
 listaRutas=linked_list()
+listaLogs=None
+listaDatos=None
 menu=None
 Panels=dtPanel(0, None, None, None)
-
+xs = datetime.datetime.now()
+fecha=str(xs.strftime("%d"))+str("/")+str(xs.strftime("%m"))+str("/")+str(xs.strftime("%Y"))
 
 
 
@@ -56,6 +62,48 @@ def setRutas(rt):
     global listaRutas
     listaRutas=rt
 
+def setLogs(rt):
+    global listaLogs
+    listaLogs=rt
+
+def getHora():
+    x = datetime.datetime.now()
+    hora=str(x.strftime("%H"))+str(":")+str(x.strftime("%M"))+str(":")+str(x.strftime("%S"))
+    return hora
+
+def datos():
+    global listaDatos
+    extraer=ExtraerXML(listaRutas)
+    extraer.extraerDatos()
+    listaDatos=extraer.getLista()
+
+def actualizar():
+    global listaLogs
+    listaLogs=linked_list()
+    for i in listaDatos.iterar():
+        cont=0
+        for j in i.dato.matriz.iterarFilasNodos():
+            if j.dato=="*":
+                cont+=1
+        vacios=(int(i.dato.nFila)*int(i.dato.nColumna))-cont
+        #dsasd=reporte(1,i.dato.nombre,cont,vacios,fecha,getHora,None, None)
+        #print(dsasd)
+        listaLogs.append(reporte(1,i.dato.nombre,cont,vacios,fecha,getHora(),None, None))
+
+def reportar():
+    cont=0
+    for i in listaRutas.iterar():
+        cont+=1
+    if cont==0:
+        messagebox.showerror("Error","No se cargó ningún archivo")
+    else:
+        if listaLogs==None:
+            datos()
+            actualizar()
+            reporte1(listaLogs)
+        else:
+            reporte2(listaLogs)
+
 def principal():
     global menu
     menu=Tk()
@@ -89,7 +137,7 @@ def principal():
     imgReporte=Image.open('Resources/reporte.png')
     imgReporte=imgReporte.resize((100,100),Image.ANTIALIAS)
     imgReporte=ImageTk.PhotoImage(imgReporte)
-    btnReporte=Button(menu, image=imgReporte, bg="white")
+    btnReporte=Button(menu, image=imgReporte, bg="white", command=reportar)
     btnReporte.place(x=360, y=120)
 
     imgAyuda=Image.open('Resources/i.png')

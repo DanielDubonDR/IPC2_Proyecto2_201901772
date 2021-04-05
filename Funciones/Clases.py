@@ -29,3 +29,18 @@ class dtPanel:
     def __str__(self):
         string=str(self.id)+str(" ")+str(self.m1)+str(" ")+str(self.m2)+str(" ")+str(self.operacion)
         return string
+
+class reporte:
+    def __init__(self, id, nombre, ELlenos, EVacios, fecha, hora, operacion, descripcion):
+        self.id=id
+        self.nombre=nombre
+        self.ELlenos=ELlenos
+        self.EVacios=EVacios
+        self.fecha=fecha
+        self.hora=hora
+        self.operacion=operacion
+        self.descripcion=descripcion
+
+    def __str__(self):
+        string=str(self.id)+str(" ")+str(self.nombre)+str(" ")+str(self.ELlenos)+str(" ")+str(self.EVacios)
+        return string

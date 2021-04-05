@@ -2,12 +2,14 @@ from tkinter import *
 from tkinter.ttk import Notebook, Combobox
 from PIL import Image, ImageTk
 from Estructuras.MOrtogonal import matrizOrtogonal
+from Estructuras.ListaSimple import linked_list
 from Funciones.LeerXML import ExtraerXML
 from Funciones.Graficar import graficarM, graficarMOriginalD
 from tkinter import messagebox
 from Estructuras.ListaSimple import linked_list
 from Funciones.Clases import datos as dts
-from Funciones.Clases import dtPanel
+from Funciones.Clases import dtPanel, reporte
+import datetime as datetime
 
 lista=None
 listaCopia=None
@@ -36,6 +38,9 @@ barra2=None
 btn2=None
 operaciones=None
 xdPanel=dtPanel(0, None, None, None)
+xs = datetime.datetime.now()
+fecha=str(xs.strftime("%d"))+str("/")+str(xs.strftime("%m"))+str("/")+str(xs.strftime("%Y"))
+listaLogs=linked_list()
 
 def datos(ruta):
     global lista
@@ -52,11 +57,17 @@ def reset():
     graficarMOriginal1()
     combOp.current(0)
 
+def getHora():
+    x = datetime.datetime.now()
+    hora=str(x.strftime("%H"))+str(":")+str(x.strftime("%M"))+str(":")+str(x.strftime("%S"))
+    return hora
+
 
 #--------------------------------------------------------------------------COMIENZA TAB1-------------------------------------------------------------- 
 
 def changeHorizontal(aux):
     global xdPanel
+    global listaLogs
     #listaCopia.searchNombre("M1").matriz.append(2,2,"*")
     #listaCopia.searchNombre("M1").matriz.cambiarValor(2,2,"*") 
     matrizAux=matrizOrtogonal()
@@ -68,9 +79,11 @@ def changeHorizontal(aux):
                 matrizAux.append(nuevo,j,"*")
     aux.matriz=matrizAux
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
 
 def changeVertical(aux): 
     global xdPanel
+    global listaLogs
     matrizAux=matrizOrtogonal()
     filas=int(aux.nFila)
     columnas=int(aux.nColumna)
@@ -81,9 +94,11 @@ def changeVertical(aux):
                 matrizAux.append(i,nuevo,"*")
     aux.matriz=matrizAux
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
 
 def changeTranspuesta(aux): 
     global xdPanel
+    global listaLogs
     matrizAux=matrizOrtogonal()
     filas=int(aux.nFila)
     columnas=int(aux.nColumna)
@@ -93,6 +108,7 @@ def changeTranspuesta(aux):
                 matrizAux.append(j,i,"*")
     aux.matriz=matrizAux
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
 
 def nombresM():
     laux=[]
@@ -333,6 +349,7 @@ def componentesAddLnV():
 
 def limpiarZona():
     global xdPanel
+    global listaLogs
     f1=txtF1.get()
     c1=txtF2.get()
     f2=txtF3.get()
@@ -346,11 +363,13 @@ def limpiarZona():
     else:
         messagebox.showerror("Error","Formato incorrecto")
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
     destruirComponentesLimpiarZona()
 
 def addLnH():
     global xdPanel
+    global listaLogs
     f1=txtF1.get()
     c1=txtF2.get()
     c2=txtF3.get()
@@ -364,11 +383,13 @@ def addLnH():
     else:
         messagebox.showerror("Error","Formato incorrecto")
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
     destruirComponentesAddLnHV()
 
 def addLnV():
     global xdPanel
+    global listaLogs
     f1=txtF1.get()
     c1=txtF2.get()
     c2=txtF3.get()
@@ -382,11 +403,13 @@ def addLnV():
     else:
         messagebox.showerror("Error","Formato incorrecto")
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
     destruirComponentesAddLnHV()
 
 def addRec():
     global xdPanel
+    global listaLogs
     f1=txtF1.get()
     c1=txtF2.get()
     alto=txtF3.get()
@@ -402,11 +425,13 @@ def addRec():
     else:
         messagebox.showerror("Error","Formato incorrecto")
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
     destruirComponentesLimpiarZona()
 
 def addTRec():
     global xdPanel
+    global listaLogs
     f1=txtF1.get()
     c1=txtF2.get()
     alto=txtF3.get()
@@ -421,6 +446,7 @@ def addTRec():
     else:
         messagebox.showerror("Error","Formato incorrecto")
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
+    listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
     destruirComponentesTRec()
 
@@ -727,6 +753,7 @@ def resultado2img(event):
 def unionAB(A,B):
     global preview
     global xdPanel
+    global listaLogs
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -757,10 +784,13 @@ def unionAB(A,B):
     preview=aux
     graficarResultado(aux)
     xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
+    ms=str(combA.get())+str(", ")+str(combB.get())
+    listaLogs.append(reporte(2,ms,None, None, fecha,getHora(),combOp2.get(), None))
 
 def interseccionAB(A,B):
     global preview
     global xdPanel
+    global listaLogs
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -787,10 +817,13 @@ def interseccionAB(A,B):
     preview=aux
     graficarResultado(aux)
     xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
+    ms=str(combA.get())+str(", ")+str(combB.get())
+    listaLogs.append(reporte(2,ms,None, None, fecha,getHora(),combOp2.get(), None))
 
 def diferenciaAB(A,B):
     global preview
     global xdPanel
+    global listaLogs
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -819,10 +852,13 @@ def diferenciaAB(A,B):
     preview=aux
     graficarResultado(aux)
     xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
+    ms=str(combA.get())+str(", ")+str(combB.get())
+    listaLogs.append(reporte(2,ms,None, None, fecha,getHora(),combOp2.get(), None))
 
 def diferenciaSimetricaAB(A,B):
     global preview
     global xdPanel
+    global listaLogs
     nFilas=0
     nColumnas=0
     Maux=matrizOrtogonal()
@@ -852,6 +888,8 @@ def diferenciaSimetricaAB(A,B):
     preview=aux
     graficarResultado(aux)
     xdPanel=dtPanel(2, combA.get(), combB.get(), combOp2.get())
+    ms=str(combA.get())+str(", ")+str(combB.get())
+    listaLogs.append(reporte(2,ms,None, None, fecha,getHora(),combOp2.get(), None))
 
 def opcionesGuardado(event):
     global combOpG
@@ -903,11 +941,25 @@ def guardar():
 
 #--------------------------------------------------------------------------FIN TAB2-------------------------------------------------------------- 
 
+def actualizar():
+    global listaLogs
+    for i in lista.iterar():
+        cont=0
+        for j in i.dato.matriz.iterarFilasNodos():
+            if j.dato=="*":
+                cont+=1
+        vacios=(int(i.dato.nFila)*int(i.dato.nColumna))-cont
+        #dsasd=reporte(1,i.dato.nombre,cont,vacios,fecha,getHora,None, None)
+        #print(dsasd)
+        listaLogs.append(reporte(1,i.dato.nombre,cont,vacios,fecha,getHora(),None, None))
+
 def on_clossing():
     operaciones.destroy()
-    from menuPrincipal import principal, setPanels, setRutas
+    actualizar()
+    from menuPrincipal import principal, setPanels, setRutas, setLogs
     setRutas(rt)
     setPanels(xdPanel)
+    setLogs(listaLogs)
     principal()
 
 def ventanaOperacion(ruta):
