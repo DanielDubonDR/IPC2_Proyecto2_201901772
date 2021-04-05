@@ -360,8 +360,14 @@ def limpiarZona():
                 if lista.searchNombre(combM.get()).matriz.verificarExiste(i,j):
                     lista.searchNombre(combM.get()).matriz.cambiarValor(i,j,"-")
         graficarEnM2(combM.get())
+        filas=lista.searchNombre(combM.get()).nFila
+        columnas=lista.searchNombre(combM.get()).nColumna
+        if int(f1)>int(filas) or int(f2)>int(filas) or int(c2)>int(columnas) or int(c1)>int(columnas):
+            messagebox.showerror("Error","Datos fuera del rango")
+            listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Datos fuera del rango"))
     else:
         messagebox.showerror("Error","Formato incorrecto")
+        listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Se esperaban números"))
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
@@ -380,8 +386,14 @@ def addLnH():
             else:
                 lista.searchNombre(combM.get()).matriz.append(int(f1),j,"*")
         graficarEnM2(combM.get())
+        filas=lista.searchNombre(combM.get()).nFila
+        columnas=lista.searchNombre(combM.get()).nColumna
+        if int(f1)>int(filas) or int(c2)>int(columnas) or int(c1)>int(columnas):
+            messagebox.showerror("Error","Datos fuera del rango")
+            listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Datos fuera del rango"))
     else:
         messagebox.showerror("Error","Formato incorrecto")
+        listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Se esperaban números"))
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
@@ -400,8 +412,14 @@ def addLnV():
             else:
                 lista.searchNombre(combM.get()).matriz.append(f,int(c1),"*")
         graficarEnM2(combM.get())
+        filas=lista.searchNombre(combM.get()).nFila
+        columnas=lista.searchNombre(combM.get()).nColumna
+        if int(f1)>int(filas) or int(c2)>int(columnas) or int(c1)>int(columnas):
+            messagebox.showerror("Error","Datos fuera del rango")
+            listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Datos fuera del rango"))
     else:
         messagebox.showerror("Error","Formato incorrecto")
+        listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Se esperaban números"))
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
@@ -422,8 +440,14 @@ def addRec():
                 else:
                     lista.searchNombre(combM.get()).matriz.append(i,j,"*")
         graficarEnM2(combM.get())
+        filas=lista.searchNombre(combM.get()).nFila
+        columnas=lista.searchNombre(combM.get()).nColumna
+        if int(f1)>int(filas) or (int(f1)+int(alto))>int(filas) or (int(c1)+int(ancho))>int(columnas) or int(c1)>int(columnas):
+            messagebox.showerror("Error","Datos fuera del rango")
+            listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Datos fuera del rango"))
     else:
         messagebox.showerror("Error","Formato incorrecto")
+        listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Se esperaban números"))
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
@@ -437,14 +461,20 @@ def addTRec():
     alto=txtF3.get()
     if f1.isnumeric() and c1.isnumeric() and alto.isnumeric():
         for i in range(int(f1),int(f1)+int(alto)):
-            for j in range(int(c1),int(c1)+i-1):
+            for j in range(int(c1),int(c1)+i):
                 if lista.searchNombre(combM.get()).matriz.verificarExiste(i,j):
                     lista.searchNombre(combM.get()).matriz.cambiarValor(i,j,"*")
                 else:
                     lista.searchNombre(combM.get()).matriz.append(i,j,"*")
         graficarEnM2(combM.get())
+        filas=lista.searchNombre(combM.get()).nFila
+        columnas=lista.searchNombre(combM.get()).nColumna
+        if int(f1)>int(filas) or (int(f1)+int(alto))>int(filas) or int(c1)>int(columnas):
+            messagebox.showerror("Error","Datos fuera del rango")
+            listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Datos fuera del rango"))
     else:
         messagebox.showerror("Error","Formato incorrecto")
+        listaLogs.append(reporte(3,combM.get(),None, None, fecha,getHora(),combOp.get(), "Se esperaban números"))
     xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     listaLogs.append(reporte(2,combM.get(),None, None, fecha,getHora(),combOp.get(), None))
     combOp.current(0)
@@ -502,6 +532,7 @@ def graficarMModificada(event):
     global combOp
     global combM
     global lbM2
+    global listaLogs
     matriz=combM.get()
     operacion=combOp.get()
     if matriz!="Elegir Matriz" and operacion!="Elegir Operación":
@@ -526,6 +557,7 @@ def graficarMModificada(event):
             componentesAddTRec()
     else:
         messagebox.showerror("Error","No ha seleccionado ninguna matriz")
+        listaLogs.append(reporte(3,"",None, None, fecha,getHora(),"Operación", "No ha seleccionado ninguna matriz"))
         combOp.current(0)
 
 def graficarEnM2(matriz):
@@ -734,6 +766,7 @@ def graficarResultado(matriz):
 
 def resultado2img(event):
     global lbM5
+    global listaLogs
     matrizA1=combA.get()
     matrizB1=combB.get()
     operacion=combOp2.get()
@@ -747,7 +780,8 @@ def resultado2img(event):
         elif operacion=="Diferencia simétrica A, B":
             diferenciaSimetricaAB(lista.searchNombre(str(matrizA1)), lista.searchNombre(str(matrizB1)))
     else:
-        messagebox.showerror("Error","No han las matrices a operar")
+        messagebox.showerror("Error","No se han escogido las matrices a operar")
+        listaLogs.append(reporte(3,"",None, None, fecha,getHora(),"Operación", "No se han escogido las matrices a operar"))
         combOp2.current(0)
 
 def unionAB(A,B):
@@ -895,6 +929,7 @@ def opcionesGuardado(event):
     global combOpG
     global txtF5
     global btn2
+    global listaLogs
     opcion=combOpG.get()
     o=combOp2.get()
     if opcion!="Elegir Opción" and o!="Elegir Operación":
@@ -914,13 +949,17 @@ def opcionesGuardado(event):
             aux2=dts(id,aux,preview.nFila,preview.nColumna,preview.matriz)
             lista.modificar(aux,aux2)
             messagebox.showinfo("Proceso exitoso","Se ha sobreescrito la matriz")
+            listaLogs.append(reporte(2,aux,None, None, fecha,getHora(),"Se sustityó la matriz", None))
             combOpG.current(0)
     else:
         messagebox.showerror("Error","No se ha elegido una operación")
+        ms=str(combA.get())+str(", ")+str(combB.get())
+        listaLogs.append(reporte(3,ms,None, None, fecha,getHora(),"Opción", "No se ha escogido una operación"))
     
 def guardar():
     global combA
     global combB
+    global listaLogs
     encontrado=False
     for buscar in lista.iterar():
         if buscar.dato.nombre==txtF5.get():
@@ -928,6 +967,7 @@ def guardar():
             
     if encontrado:
         messagebox.showerror("Error","Ya existe una imagen con el mismo nombre")
+        listaLogs.append(reporte(3,txtF5.get(),None, None, fecha,getHora(),"Guardar", "Existe una imagen con el mismo nombre"))
     else:
         aux2=dts(0,txtF5.get(),preview.nFila,preview.nColumna,preview.matriz)
         lista.append(aux2)
@@ -935,6 +975,7 @@ def guardar():
         combA["values"]=(nombresM())
         combB["values"]=(nombresM())
         combM["values"]=(nombresM())
+        listaLogs.append(reporte(2,txtF5.get(),None, None, fecha,getHora(),"Guardar como nueva imagen", None))
         txtF5.destroy()
         btn2.destroy()
         combOpG.current(0)

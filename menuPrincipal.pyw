@@ -10,6 +10,7 @@ from ventanaPanel import m1, m2
 from Funciones.LeerXML import ExtraerXML
 import datetime as datetime
 from Funciones.ReportarLogs import reporte1, reporte2
+from tkinter import messagebox
 #--------------------------------------------VARIABLES GLOBALES-------------------------------------------------
 listaRutas=linked_list()
 listaLogs=None
@@ -33,6 +34,7 @@ def cargarArchivo():
     ruta =  askopenfilename(initialdir = "/", title = "Select a File", filetypes = (("Text files", "*.xml*"), ("all files", "*.*")))
     if ruta!="":
         listaRutas.append(ruta)
+        messagebox.showinfo("Success","Archivo cargado")
 
 def ventanaOp():
     cont=0
