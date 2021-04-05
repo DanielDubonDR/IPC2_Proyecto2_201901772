@@ -3,10 +3,11 @@ from tkinter.ttk import Notebook, Combobox
 from PIL import Image, ImageTk
 from Estructuras.MOrtogonal import matrizOrtogonal
 from Funciones.LeerXML import ExtraerXML
-from Funciones.Graficar import graficarM
+from Funciones.Graficar import graficarM, graficarMOriginalD
 from tkinter import messagebox
 from Estructuras.ListaSimple import linked_list
 from Funciones.Clases import datos as dts
+from Funciones.Clases import dtPanel
 
 lista=None
 listaCopia=None
@@ -33,6 +34,8 @@ combOpG=None
 preview=None
 barra2=None
 btn2=None
+operaciones=None
+xdPanel=dtPanel(0, None, None, None)
 
 def datos(ruta):
     global lista
@@ -53,6 +56,7 @@ def reset():
 #--------------------------------------------------------------------------COMIENZA TAB1-------------------------------------------------------------- 
 
 def changeHorizontal(aux):
+    global xdPanel
     #listaCopia.searchNombre("M1").matriz.append(2,2,"*")
     #listaCopia.searchNombre("M1").matriz.cambiarValor(2,2,"*") 
     matrizAux=matrizOrtogonal()
@@ -63,8 +67,10 @@ def changeHorizontal(aux):
                 nuevo=filas-(i-1)
                 matrizAux.append(nuevo,j,"*")
     aux.matriz=matrizAux
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
 
 def changeVertical(aux): 
+    global xdPanel
     matrizAux=matrizOrtogonal()
     filas=int(aux.nFila)
     columnas=int(aux.nColumna)
@@ -74,8 +80,10 @@ def changeVertical(aux):
                 nuevo=columnas-(j-1)
                 matrizAux.append(i,nuevo,"*")
     aux.matriz=matrizAux
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
 
 def changeTranspuesta(aux): 
+    global xdPanel
     matrizAux=matrizOrtogonal()
     filas=int(aux.nFila)
     columnas=int(aux.nColumna)
@@ -84,6 +92,7 @@ def changeTranspuesta(aux):
             if aux.matriz.verificarExiste2(i,j):
                 matrizAux.append(j,i,"*")
     aux.matriz=matrizAux
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
 
 def nombresM():
     laux=[]
@@ -101,6 +110,7 @@ def graficarMOriginal(event):
     matriz=combM.get()
     if matriz!="Elegir Matriz":
         graficarM(lista.searchNombre(str(matriz)))
+        graficarMOriginalD(lista.searchNombre(str(matriz)))
         #change(lista.searchNombre(str(matriz)))
         imgCargar=Image.open("Imagenes/"+str(matriz)+".png")
         ancho=imgCargar.size[0]
@@ -322,6 +332,7 @@ def componentesAddLnV():
     action.place(x=1025, y=24, width=75, height=28)
 
 def limpiarZona():
+    global xdPanel
     f1=txtF1.get()
     c1=txtF2.get()
     f2=txtF3.get()
@@ -334,10 +345,12 @@ def limpiarZona():
         graficarEnM2(combM.get())
     else:
         messagebox.showerror("Error","Formato incorrecto")
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     combOp.current(0)
     destruirComponentesLimpiarZona()
 
 def addLnH():
+    global xdPanel
     f1=txtF1.get()
     c1=txtF2.get()
     c2=txtF3.get()
@@ -350,10 +363,12 @@ def addLnH():
         graficarEnM2(combM.get())
     else:
         messagebox.showerror("Error","Formato incorrecto")
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     combOp.current(0)
     destruirComponentesAddLnHV()
 
 def addLnV():
+    global xdPanel
     f1=txtF1.get()
     c1=txtF2.get()
     c2=txtF3.get()
@@ -366,10 +381,12 @@ def addLnV():
         graficarEnM2(combM.get())
     else:
         messagebox.showerror("Error","Formato incorrecto")
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     combOp.current(0)
     destruirComponentesAddLnHV()
 
 def addRec():
+    global xdPanel
     f1=txtF1.get()
     c1=txtF2.get()
     alto=txtF3.get()
@@ -384,10 +401,12 @@ def addRec():
         graficarEnM2(combM.get())
     else:
         messagebox.showerror("Error","Formato incorrecto")
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     combOp.current(0)
     destruirComponentesLimpiarZona()
 
 def addTRec():
+    global xdPanel
     f1=txtF1.get()
     c1=txtF2.get()
     alto=txtF3.get()
@@ -401,6 +420,7 @@ def addTRec():
         graficarEnM2(combM.get())
     else:
         messagebox.showerror("Error","Formato incorrecto")
+    xdPanel=dtPanel(1, combM.get(), None, combOp.get())
     combOp.current(0)
     destruirComponentesTRec()
 
@@ -875,6 +895,12 @@ def guardar():
 
 #--------------------------------------------------------------------------FIN TAB2-------------------------------------------------------------- 
 
+def on_clossing():
+    operaciones.destroy()
+    from menuPrincipal import principal, setPanels
+    setPanels(xdPanel)
+    principal()
+
 def ventanaOperacion(ruta):
     global combM
     global lbM1
@@ -890,6 +916,7 @@ def ventanaOperacion(ruta):
     global barra2
     global combOp2
     global combOpG
+    global operaciones
     datos(ruta)
     rt=ruta
     operaciones=Tk()
@@ -1004,6 +1031,7 @@ def ventanaOperacion(ruta):
     resetear=Button(tab1, text="Reset", font=("Consolas",11), bg="#006266", fg="white", command=reset)
     resetear.place(x=1110, y=24, width=65, height=28)
 
+    operaciones.protocol("WM_DELETE_WINDOW", on_clossing)
     operaciones.mainloop()
 
 '''

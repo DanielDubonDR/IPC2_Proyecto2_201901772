@@ -36,7 +36,7 @@ def graficarM(m):
     direccion="Imagenes/"+str(m.nombre)
     s.render(direccion, view=False, format="png")
 
-def graficarMModificada(m):
+def graficarMOriginalD(m):
     string=""
     s = Digraph('structs', node_attr={'shape': 'plaintext'})
     #s.attr(rankdir="RL")
@@ -68,5 +68,5 @@ def graficarMModificada(m):
     s.node('struct3', string)
     #print(s.source)
 
-    direccion="Imagenes/"+str(m.nombre)+str("_Modificada")
+    direccion="Imagenes/"+str(m.nombre)+str("_Original")
     s.render(direccion, view=False, format="png")

@@ -1,7 +1,105 @@
 from tkinter import *
 from tkinter import messagebox
+from PIL import Image, ImageTk
+
+lbM1=None
+lbM2=None
+operaciones=None
+dtsPanel=None
+
+def on_clossing():
+    operaciones.destroy()
+    from menuPrincipal import principal, setPanels
+    setPanels(dtsPanel)
+    principal()
+
+def graficarMOriginal1(m):
+    global lbM2
+    imgCargar=Image.open("Imagenes/"+str(m.m1)+".png")
+    ancho=imgCargar.size[0]
+    alto=imgCargar.size[1]
+    if ancho<600 and alto<520:
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM2.configure(image=imgCargar)
+        lbM2.image=imgCargar
+    elif ancho>alto:
+        restar=ancho-600
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM2.configure(image=imgCargar)
+        lbM2.image=imgCargar
+    elif alto>ancho and alto<520:
+        restar=ancho-600
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM2.configure(image=imgCargar)
+        lbM2.image=imgCargar
+    elif alto>ancho:
+        restar=alto-520
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM2.configure(image=imgCargar)
+        lbM2.image=imgCargar
+    elif alto==ancho and  ancho>alto:
+        restar=ancho-600
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM2.configure(image=imgCargar)
+        lbM2.image=imgCargar
+    elif alto==ancho and  alto>ancho:
+        restar=alto-520
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM2.configure(image=imgCargar)
+        lbM2.image=imgCargar
+
+def graficarMOriginal(m):
+    global lbM1
+
+    imgCargar=Image.open("Imagenes/"+str(m.m1)+"_Original.png")
+    ancho=imgCargar.size[0]
+    alto=imgCargar.size[1]
+    if ancho<600 and alto<520:
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM1.configure(image=imgCargar)
+        lbM1.image=imgCargar
+    elif ancho>alto:
+        restar=ancho-600
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM1.configure(image=imgCargar)
+        lbM1.image=imgCargar
+    elif alto>ancho and alto<520:
+        restar=ancho-600
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM1.configure(image=imgCargar)
+        lbM1.image=imgCargar
+    elif alto>ancho:
+        restar=alto-520
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM1.configure(image=imgCargar)
+        lbM1.image=imgCargar
+    elif alto==ancho and  ancho>alto:
+        restar=ancho-600
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM1.configure(image=imgCargar)
+        lbM1.image=imgCargar
+    elif alto==ancho and  alto>ancho:
+        restar=alto-520
+        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+        imgCargar=ImageTk.PhotoImage(imgCargar)
+        lbM1.configure(image=imgCargar)
+        lbM1.image=imgCargar
 
 def m1(dato):
+    global lbM1
+    global lbM2
+    global operaciones
+    global dtsPanel
+    dtsPanel=dato
     operaciones=Tk()
     ancho_ventana = 1200
     alto_ventana = 620
@@ -20,7 +118,7 @@ def m1(dato):
     lb1=Label(barra1, bg="#273c75", fg="white",text="Última operación realizada:", font=("Consolas",11), justify=LEFT)
     lb1.place(x=10, y=20, width=220, height=30)
 
-    lb2=Label(barra1, bg="#273c75", fg="white",text="Agregar linea horizontal a una imagen", font=("Consolas",11), justify=RIGHT)
+    lb2=Label(barra1, bg="#273c75", fg="white",text=dato.operacion, font=("Consolas",11), justify=RIGHT)
     lb2.place(x=240, y=20, width=300, height=30)
 
 
@@ -37,8 +135,9 @@ def m1(dato):
     identificador2=Label(operaciones, bg="#487eb0", text="Imagen Resultante",  font=("Consolas",12), fg="white")
     identificador2.place(x=600, y=590, width=600, height=30)
 
-    print(dato)
-
+    graficarMOriginal(dato)
+    graficarMOriginal1(dato)
+    operaciones.protocol("WM_DELETE_WINDOW", on_clossing)
     operaciones.mainloop()
 
 def m2():
