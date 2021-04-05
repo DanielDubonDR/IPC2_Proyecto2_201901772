@@ -28,6 +28,8 @@ txtF4=None
 txtF5=None
 action=None
 lbT=None
+lb11=None
+combE=None
 barra1=None
 rt=None
 combA=None
@@ -981,6 +983,24 @@ def guardar():
         combOpG.current(0)
 
 #--------------------------------------------------------------------------FIN TAB2-------------------------------------------------------------- 
+#--------------------------------------------------------------------------INICIO TAB3-------------------------------------------------------------- 
+def verEstado(event):
+    global lb11
+    mm=lista.searchNombre(combE.get())
+    ff=mm.nFila
+    cc=mm.nColumna
+    llenos=0
+    for i in mm.matriz.iterarFilasNodos():
+        if i.dato=="*":
+            llenos+=1
+    vacios=(int(ff)*int(cc))-llenos
+    string="Nombre: "+str(combE.get())+"    Filas: "+str(ff)+"      Columnas: "+str(cc)+"    Espacios llenos: "+str(llenos)+"    Espacios vacios: "+str(vacios)
+    string+="\n\nOperaciones realizadas:\n"
+    for j in listaLogs.iterar():
+        if  combE.get() in j.dato.nombre:
+            string+=str("\n     > ")+str(j.dato.operacion)
+    lb11.configure(text=string)
+#--------------------------------------------------------------------------FIN TAB3-------------------------------------------------------------- 
 
 def actualizar():
     global listaLogs
@@ -1018,7 +1038,9 @@ def ventanaOperacion(ruta):
     global barra2
     global combOp2
     global combOpG
+    global combE
     global operaciones
+    global lb11
     datos(ruta)
     rt=ruta
     operaciones=Tk()
@@ -1036,8 +1058,10 @@ def ventanaOperacion(ruta):
     tabControl=Notebook(operaciones)
     tab1=Frame(tabControl, bg="white")
     tab2=Frame(tabControl, bg="white")
+    tab3=Frame(tabControl, bg="white")
     tabControl.add(tab1, text="Operaciones sobre una imagen")
     tabControl.add(tab2, text="Operaciones sobre dos imagenes")
+    tabControl.add(tab3, text="Ver estado de las imagenes")
     tabControl.pack(expand=1, fill="both")
 
     barra1=Frame(tab1, bg="#273c75")
@@ -1046,14 +1070,29 @@ def ventanaOperacion(ruta):
     barra2=Frame(tab2, bg="#273c75")
     barra2.place(x=0, y=0, width=1200, height=70)
 
+    barra3=Frame(tab3, bg="#273c75")
+    barra3.place(x=0, y=0, width=1200, height=70)
+
     lb1=Label(barra1, bg="#273c75", fg="white",text="Matriz:", font=("Consolas",12))
     lb1.place(x=10, y=5, width=60, height=30)
+
+    lb10=Label(barra3, bg="#273c75", fg="white",text="Ver estado:", font=("Consolas",11))
+    lb10.place(x=20, y=5, width=90, height=30)
+
+    lb11=Label(tab3, bg="#353b48", fg="white",font=("Consolas",11), justify=LEFT)
+    lb11.place(x=20, y=90, width=1160, height=500)
 
     combM=Combobox(barra1, width="20", state="readonly", font=("Consolas",10))
     combM["values"]=(nombresM())
     combM.place(x=10, y=35)
     combM.current(0)
     combM.bind("<<ComboboxSelected>>", graficarMOriginal)
+
+    combE=Combobox(barra3, width="25", state="readonly", font=("Consolas",10))
+    combE["values"]=(nombresM())
+    combE.place(x=20, y=35)
+    combE.current(0)
+    combE.bind("<<ComboboxSelected>>", verEstado)
 
     combA=Combobox(barra2, width="20", state="readonly", font=("Consolas",10))
     combA["values"]=(nombresM())
