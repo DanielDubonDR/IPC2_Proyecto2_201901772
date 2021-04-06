@@ -5,6 +5,8 @@
  
 Se desarrolo en la version de python 3.8
 
+**> PARA EJECUTAR EL PROGRAMA EJECUTE EL ARCHIVO "menuPrincipal.pyw"**
+
 **Requirimientos**
 
 - Para generar las gráficas es necesario tener instalado graphviz en su ordenador, puede descargarlo desde su páginal oficial
