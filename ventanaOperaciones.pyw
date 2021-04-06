@@ -49,6 +49,22 @@ def datos(ruta):
     extraer=ExtraerXML(ruta)
     extraer.extraerDatos()
     lista=extraer.getLista()
+    
+def repetidos():
+    global listaLogs
+    err=False
+    name=""
+    for i in lista.iterar():
+        cont=0
+        for j in lista.iterar():
+            if i.dato.nombre==j.dato.nombre:
+                cont+=1
+        if cont>1:
+            err=True
+            name=i.dato.nombre
+    if err:
+        listaLogs.append(reporte(3,name,None, None, fecha,getHora(),"Cargar matrices", "Hay duplicidad de nombres de matrices"))
+        messagebox.showerror("Error","Hay duplicidad de nombres de matrices "+str(name))
 
 def reset():
     global lista
@@ -1255,6 +1271,8 @@ def ventanaOperacion(ruta):
 
     resetear=Button(tab1, text="Reset", font=("Consolas",11), bg="#006266", fg="white", command=reset)
     resetear.place(x=1110, y=24, width=65, height=28)
+
+    repetidos()
 
     operaciones.protocol("WM_DELETE_WINDOW", on_clossing)
     operaciones.mainloop()
