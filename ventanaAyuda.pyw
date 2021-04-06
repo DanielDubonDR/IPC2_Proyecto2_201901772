@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import os
 
 info=None
 ayuda=None
@@ -11,6 +12,10 @@ def verInfo():
     texto="Nombre: Daniel Reginaldo Dubón Rodríguez \nCarné: 201901772 \nCurso: Introducción a la Programación y Computación 2, Sección \"A\" \nCarrera: Ingenieria en Ciencias y Sistemas \nSemetre: Quinto"
     lb1=Label(ayuda, bg="#353b48", fg="white",text=texto, font=("Consolas",11), justify=LEFT)
     lb1.place(x=120, y=40, width=600, height=130)
+
+def abrir():
+    path=os.getcwd()+"/Documentacion/201901772-Ensayo.pdf"
+    os.startfile(path)
 
 def ventanaHelp():
     global info
@@ -31,7 +36,7 @@ def ventanaHelp():
     info=Button(ayuda, text="Ver información del estudiante", font=("Consolas",11), bg="#273c75", fg="white", command=verInfo)
     info.place(x=270, y=100, width=300, height=28)
 
-    doc=Button(ayuda, text="Ver documentación", font=("Consolas",11), bg="#273c75", fg="white")
+    doc=Button(ayuda, text="Ver documentación", font=("Consolas",11), bg="#273c75", fg="white", command=abrir)
     doc.place(x=270, y=150, width=300, height=28)
 
     ayuda.mainloop()
