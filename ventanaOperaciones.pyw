@@ -139,10 +139,17 @@ def graficarMOriginal(event):
             lbM1.image=imgCargar
         elif ancho>alto:
             restar=ancho-600
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM1.configure(image=imgCargar)
-            lbM1.image=imgCargar
+            if (alto-restar)>520:
+                restar=alto-520
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
         elif alto>ancho and alto<520:
             restar=ancho-600
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -151,10 +158,17 @@ def graficarMOriginal(event):
             lbM1.image=imgCargar
         elif alto>ancho:
             restar=alto-520
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM1.configure(image=imgCargar)
-            lbM1.image=imgCargar
+            if (ancho-restar)>600:
+                restar=ancho-600
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
         elif alto==ancho and  ancho>alto:
             restar=ancho-600
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -501,10 +515,17 @@ def graficarMOriginal1():
             lbM1.image=imgCargar
         elif ancho>alto:
             restar=ancho-600
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM1.configure(image=imgCargar)
-            lbM1.image=imgCargar
+            if (alto-restar)>520:
+                restar=alto-520
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
         elif alto>ancho and alto<520:
             restar=ancho-600
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -513,10 +534,17 @@ def graficarMOriginal1():
             lbM1.image=imgCargar
         elif alto>ancho:
             restar=alto-520
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM1.configure(image=imgCargar)
-            lbM1.image=imgCargar
+            if (ancho-restar)>600:
+                restar=ancho-600
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM1.configure(image=imgCargar)
+                lbM1.image=imgCargar
         elif alto==ancho and  ancho>alto:
             restar=ancho-600
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -572,11 +600,18 @@ def graficarEnM2(matriz):
         lbM2.configure(image=imgCargar)
         lbM2.image=imgCargar
     elif ancho>alto:
-        restar=ancho-600
-        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-        imgCargar=ImageTk.PhotoImage(imgCargar)
-        lbM2.configure(image=imgCargar)
-        lbM2.image=imgCargar
+            restar=ancho-600
+            if (alto-restar)>520:
+                restar=alto-520
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM2.configure(image=imgCargar)
+                lbM2.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM2.configure(image=imgCargar)
+                lbM2.image=imgCargar
     elif alto>ancho and alto<520:
         restar=ancho-600
         imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -585,10 +620,17 @@ def graficarEnM2(matriz):
         lbM2.image=imgCargar
     elif alto>ancho:
         restar=alto-520
-        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-        imgCargar=ImageTk.PhotoImage(imgCargar)
-        lbM2.configure(image=imgCargar)
-        lbM2.image=imgCargar
+        if (ancho-restar)>600:
+            restar=ancho-600
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM2.configure(image=imgCargar)
+            lbM2.image=imgCargar
+        else:
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM2.configure(image=imgCargar)
+            lbM2.image=imgCargar
     elif alto==ancho and  ancho>alto:
         restar=ancho-600
         imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -645,10 +687,17 @@ def graficarA(event):
             lbM3.image=imgCargar
         elif ancho>alto:
             restar=ancho-400
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM3.configure(image=imgCargar)
-            lbM3.image=imgCargar
+            if (alto-restar)>520:
+                restar=alto-520
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM3.configure(image=imgCargar)
+                lbM3.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM3.configure(image=imgCargar)
+                lbM3.image=imgCargar
         elif alto>ancho and alto<520:
             restar=ancho-400
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -657,10 +706,17 @@ def graficarA(event):
             lbM3.image=imgCargar
         elif alto>ancho:
             restar=alto-520
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM3.configure(image=imgCargar)
-            lbM3.image=imgCargar
+            if (ancho-restar)>400:
+                restar=ancho-400
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM3.configure(image=imgCargar)
+                lbM3.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM3.configure(image=imgCargar)
+                lbM3.image=imgCargar
         elif alto==ancho and  ancho>alto:
             restar=ancho-400
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -694,10 +750,17 @@ def graficarB(event):
             lbM4.image=imgCargar
         elif ancho>alto:
             restar=ancho-400
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM4.configure(image=imgCargar)
-            lbM4.image=imgCargar
+            if (alto-restar)>520:
+                restar=alto-520
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM4.configure(image=imgCargar)
+                lbM4.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM4.configure(image=imgCargar)
+                lbM4.image=imgCargar
         elif alto>ancho and alto<520:
             restar=ancho-400
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -706,10 +769,17 @@ def graficarB(event):
             lbM4.image=imgCargar
         elif alto>ancho:
             restar=alto-520
-            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-            imgCargar=ImageTk.PhotoImage(imgCargar)
-            lbM4.configure(image=imgCargar)
-            lbM4.image=imgCargar
+            if (ancho-restar)>400:
+                restar=ancho-400
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM4.configure(image=imgCargar)
+                lbM4.image=imgCargar
+            else:
+                imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+                imgCargar=ImageTk.PhotoImage(imgCargar)
+                lbM4.configure(image=imgCargar)
+                lbM4.image=imgCargar
         elif alto==ancho and  ancho>alto:
             restar=ancho-400
             imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -737,10 +807,17 @@ def graficarResultado(matriz):
         lbM5.image=imgCargar
     elif ancho>alto:
         restar=ancho-400
-        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-        imgCargar=ImageTk.PhotoImage(imgCargar)
-        lbM5.configure(image=imgCargar)
-        lbM5.image=imgCargar
+        if (alto-restar)>520:
+            restar=alto-520
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM5.configure(image=imgCargar)
+            lbM5.image=imgCargar
+        else:
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM5.configure(image=imgCargar)
+            lbM5.image=imgCargar
     elif alto>ancho and alto<520:
         restar=ancho-400
         imgCargar=imgCargar.resize((ancho-restar,alto-restar))
@@ -749,10 +826,17 @@ def graficarResultado(matriz):
         lbM5.image=imgCargar
     elif alto>ancho:
         restar=alto-520
-        imgCargar=imgCargar.resize((ancho-restar,alto-restar))
-        imgCargar=ImageTk.PhotoImage(imgCargar)
-        lbM5.configure(image=imgCargar)
-        lbM5.image=imgCargar
+        if (ancho-restar)>400:
+            restar=ancho-400
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM5.configure(image=imgCargar)
+            lbM5.image=imgCargar
+        else:
+            imgCargar=imgCargar.resize((ancho-restar,alto-restar))
+            imgCargar=ImageTk.PhotoImage(imgCargar)
+            lbM5.configure(image=imgCargar)
+            lbM5.image=imgCargar
     elif alto==ancho and  ancho>alto:
         restar=ancho-400
         imgCargar=imgCargar.resize((ancho-restar,alto-restar))
