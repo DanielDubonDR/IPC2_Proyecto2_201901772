@@ -2,7 +2,7 @@ digraph structs {
 	node [shape=plaintext]
 	struct3 [label=<
 <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="7"><TR>
-    <TD border="0">Matriz_1</TD>
+    <TD border="0">Matriz_8</TD>
 <TD border="0">1</TD>
 <TD border="0">2</TD>
 <TD border="0">3</TD>
@@ -22,11 +22,11 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
+<TD>   </TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD></TR>
@@ -37,9 +37,9 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
+<TD>   </TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -47,12 +47,12 @@ digraph structs {
 <TR>
         <TD border="0">3</TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
 <TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD>   </TD>
+<TD>   </TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -61,12 +61,12 @@ digraph structs {
 <TR>
         <TD border="0">4</TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
 <TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD>   </TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -75,12 +75,12 @@ digraph structs {
 <TR>
         <TD border="0">5</TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
 <TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -89,12 +89,12 @@ digraph structs {
 <TR>
         <TD border="0">6</TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
 <TD bgcolor="black">*</TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -103,13 +103,13 @@ digraph structs {
 <TR>
         <TD border="0">7</TD>
 <TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
 <TD bgcolor="black">*</TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
-<TD>   </TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
+<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -119,7 +119,6 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -127,13 +126,14 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD>   </TD></TR>
+<TD>   </TD>
+<TD bgcolor="black">*</TD></TR>
 <TR>
         <TD border="0">9</TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -147,7 +147,7 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -161,7 +161,7 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
+<TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -175,7 +175,6 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD bgcolor="black">*</TD>
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
@@ -183,5 +182,6 @@ digraph structs {
 <TD>   </TD>
 <TD>   </TD>
 <TD>   </TD>
-<TD>   </TD></TR></TABLE>>]
+<TD>   </TD>
+<TD bgcolor="black">*</TD></TR></TABLE>>]
 }

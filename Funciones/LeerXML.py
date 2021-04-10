@@ -19,6 +19,7 @@ class ExtraerXML:
                 columnas=matriz.getElementsByTagName("columnas")[0]
                 imagen=matriz.getElementsByTagName("imagen")[0]
                 #print(nombreMatriz.firstChild.data, filas.firstChild.data, columnas.firstChild.data)
+                #print(imagen.firstChild.data)
                 imagenConvertidaMatriz=self.convertirImagen(imagen.firstChild.data)
                 aux=datos(id,nombreMatriz.firstChild.data, filas.firstChild.data, columnas.firstChild.data,imagenConvertidaMatriz)
                 self.listaDatos.append(aux)
@@ -29,6 +30,7 @@ class ExtraerXML:
     def convertirImagen(self, imagen):
         matriz = matrizOrtogonal()
         imagen=imagen.replace(" ","").lstrip("\n")
+        imagen=imagen.replace("\t","")
         lineas=imagen.splitlines()
         fila=1
         for linea in lineas:
